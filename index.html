@@ -3,123 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Nanu ❤️</title>
+<title>For Nanu ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-font-family:'Quicksand',sans-serif;
 height:100vh;
 background:#000;
+font-family:'Poppins',sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
-transition:background 2s ease;
+color:white;
 }
 
-/* Intro */
-#intro{
+/* tap screen */
+#tapScreen{
 position:fixed;
 width:100%;
 height:100%;
 background:#000;
-z-index:20;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10;
 }
 
-/* Main */
-.container{
+.tapText{
+font-family:'Playfair Display',serif;
+font-size:28px;
+opacity:0.85;
+animation:fade 2s infinite;
+}
+
+@keyframes fade{
+0%,100%{opacity:0.3;}
+50%{opacity:1;}
+}
+
+/* main area */
+#main{
+display:none;
 text-align:center;
-opacity:0;
-transform:scale(0.95);
-transition:all 1.5s ease;
-max-width:420px;
-padding:30px;
-}
-
-.show{
-opacity:1;
-transform:scale(1);
+padding:20px;
 }
 
 h1{
 font-family:'Playfair Display',serif;
-font-weight:600;
 font-size:34px;
-color:#e6a4b4;
+color:#f3b6c6;
 margin-bottom:25px;
 }
 
 .board{
 background:white;
-border-radius:25px;
+color:#333;
 padding:25px;
-box-shadow:0 10px 40px rgba(0,0,0,0.1);
-}
-
-#countdown{
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,0.15);
 font-size:22px;
-color:#444;
-font-weight:500;
 }
 
-/* Reveal Overlay */
-#blackout{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
-z-index:30;
-opacity:0;
-pointer-events:none;
-transition:opacity 1.5s ease;
-}
-
-/* Flicker effect */
-.flicker{
-animation:flick 1s linear 3;
-}
-
-@keyframes flick{
-0%{opacity:0.2;}
-50%{opacity:1;}
-100%{opacity:0.5;}
+/* soft dreamy bg */
+.dreamy{
+background:linear-gradient(135deg,#fff1f5,#ffe4ec);
+transition:background 2s ease;
+color:#333;
 }
 </style>
 </head>
 
 <body>
 
-<div id="intro"></div>
-<div id="blackout"></div>
+<div id="tapScreen">
+<div class="tapText">tap to open your surprise…</div>
+</div>
 
-<audio id="bgMusic" src="music.mp3" loop></audio>
+<audio id="music" src="music.mp3" loop></audio>
 
-<div class="container" id="main">
+<div id="main">
 <h1>Happy Birthday, My Tortoise 🐢</h1>
-
 <div class="board">
 <div id="countdown">Loading...</div>
 </div>
 </div>
 
 <script>
-
 let target = new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
 let preview = window.location.search.includes("preview=1");
 
-setTimeout(()=>{
-document.body.style.background="linear-gradient(135deg,#fff1f5,#ffe4ec)";
-document.getElementById("intro").style.display="none";
-document.getElementById("main").classList.add("show");
-},2000);
+document.getElementById("tapScreen").onclick = ()=>{
+document.getElementById("tapScreen").style.display="none";
+
+let music=document.getElementById("music");
+music.volume=0.6;
+music.play().catch(()=>{});
+
+document.body.classList.add("dreamy");
+document.getElementById("main").style.display="block";
+
+if(preview || new Date().getTime()>=target){
+showBirthday();
+}else{
+startCountdown();
+}
+};
 
 function startCountdown(){
 let timer=setInterval(()=>{
@@ -128,7 +121,7 @@ let distance=target-now;
 
 if(distance<=0){
 clearInterval(timer);
-startCinematicReveal();
+showBirthday();
 return;
 }
 
@@ -143,33 +136,9 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s";
 },1000);
 }
 
-function startCinematicReveal(){
-let blackout=document.getElementById("blackout");
-
-blackout.style.pointerEvents="auto";
-blackout.style.opacity="1";
-
-setTimeout(()=>{
-blackout.classList.add("flicker");
-
-let music=document.getElementById("bgMusic");
-music.volume=0.5;
-music.play().catch(()=>{});
-
-},2000);
-
-setTimeout(()=>{
-document.getElementById("countdown").innerHTML="✨";
-blackout.style.opacity="0";
-},4000);
+function showBirthday(){
+document.getElementById("countdown").innerHTML="It’s your moment ✨";
 }
-
-if(preview || new Date().getTime()>=target){
-setTimeout(startCinematicReveal,2500);
-}else{
-startCountdown();
-}
-
 </script>
 
 </body>
