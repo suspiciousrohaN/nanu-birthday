@@ -137,7 +137,8 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s";
 }
 function showBirthday(){
 
-let m = document.getElementById("main");
+document.getElementById("main").innerHTML = `
+<div style="
 m.style.opacity="0";
 setTimeout(()=>{
 m.innerHTML = `
