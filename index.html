@@ -94,7 +94,7 @@ color:#333;
 </div>
 
 <script>
-let target = new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
+let target = new Date().getTime() - 1000;
 let preview = window.location.search.includes("preview=1");
 
 document.getElementById("tapScreen").onclick = ()=>{
