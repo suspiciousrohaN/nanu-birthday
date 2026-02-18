@@ -1,182 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Nanu ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<title>Happy Birthday ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
 body{
+margin:0;
+background:linear-gradient(135deg,#ffdce6,#ffeef3);
+font-family: 'Poppins',sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
 height:100vh;
-background:#000;
-font-family:'Poppins',sans-serif;
-display:flex;
-justify-content:center;
-align-items:center;
 overflow:hidden;
-color:white;
 }
 
-/* tap screen */
-#tapScreen{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:10;
-}
-
-.tapText{
-font-family:'Playfair Display',serif;
-font-size:28px;
-opacity:0.85;
-animation:fade 2s infinite;
-}
-
-@keyframes fade{
-0%,100%{opacity:0.3;}
-50%{opacity:1;}
-}
-
-/* main area */
 #main{
-display:none;
 text-align:center;
-padding:20px;
+transition:1s;
 }
 
-h1{
-font-family:'Playfair Display',serif;
+.title{
 font-size:34px;
-color:#f3b6c6;
-margin-bottom:25px;
+color:#ff5c8a;
+font-weight:600;
+margin-bottom:20px;
 }
 
-.board{
+.box{
 background:white;
-color:#333;
-padding:25px;
-border-radius:25px;
-box-shadow:0 10px 40px rgba(0,0,0,0.15);
-font-size:22px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+max-width:330px;
+margin:auto;
 }
 
-/* soft dreamy bg */
-.dreamy{
-background:linear-gradient(135deg,#fff1f5,#ffe4ec);
-transition:background 2s ease;
-color:#333;
+img{
+width:220px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.msg{
+font-size:15px;
+line-height:1.6;
+text-align:left;
+color:#444;
 }
 </style>
 </head>
 
 <body>
 
-<div id="tapScreen">
-<div class="tapText">tap to open your surprise…</div>
-</div>
-
-<audio id="music" src="music.mp3" loop></audio>
-
 <div id="main">
-<h1>Happy Birthday, My Tortoise 🐢</h1>
-<div class="board">
-<div id="countdown">Loading...</div>
+<div class="title">Happy Birthday, My Tortoise 🐢</div>
+
+<div class="box">
+✨ Loading surprise...
 </div>
 </div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
+
+// 🔥 FOR TESTING (shows instantly)
 let target = new Date().getTime() - 1000;
-let preview = window.location.search.includes("preview=1");
 
-document.getElementById("tapScreen").onclick = ()=>{
-document.getElementById("tapScreen").style.display="none";
+// REAL DATE (use later)
+// let target = new Date("Feb 22, 2026 00:00:00").getTime();
 
-let music=document.getElementById("music");
-music.volume=0.6;
-music.play().catch(()=>{});
+start();
 
-document.body.classList.add("dreamy");
-document.getElementById("main").style.display="block";
-
-if(preview || new Date().getTime()>=target){
-showBirthday();
-}else{
-startCountdown();
-}
-};
-
-function startCountdown(){
-let timer=setInterval(()=>{
+function start(){
 let now=new Date().getTime();
 let distance=target-now;
 
 if(distance<=0){
-clearInterval(timer);
 showBirthday();
-return;
+}else{
+setTimeout(start,1000);
+}
 }
 
-let days=Math.floor(distance/(1000*60*60*24));
-let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-let minutes=Math.floor((distance%(1000*60))/1000/60);
-let seconds=Math.floor((distance%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML=
-days+"d "+hours+"h "+minutes+"m "+seconds+"s";
-
-},1000);
-}
 function showBirthday(){
 
-document.getElementById("main").innerHTML = `
-<div style="
-m.style.opacity="0";
-setTimeout(()=>{
+let m=document.getElementById("main");
+
 m.innerHTML = `
-<div style="
-background:#fffafc;
-border-radius:25px;
-padding:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.15);
-max-width:420px;
-margin:auto;
-">
+<div class="title">Happy Birthday, My Tortoise 🐢</div>
 
-<h1 style="margin-bottom:15px;color:#e6a4b4;">Happy Birthday Nanu ❤️</h1>
+<div class="box">
 
-<div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
+<img src="photo.jpg">
 
-<!-- photo frame -->
-<div style="
-background:white;
-padding:12px;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
-width:220px;
-">
-<img src="photo.jpg" style="width:100%;border-radius:8px;">
-</div>
-
-<!-- message frame -->
-<div style="
-background:white;
-padding:18px;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
-font-size:15px;
-line-height:1.6;
-text-align:left;
-">
-
+<div class="msg">
 Happy Birthday, My Tortoise.<br><br>
 
 Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
@@ -187,17 +109,15 @@ On your birthday, I don’t just wish you happiness...I promise to be someone wh
 
 No matter where life takes us, I’m always going to be grateful that I get to love you.<br><br>
 
-Happy Birthday to the girl who feels like my forever my nanu ♡♡<br><br>
-
 <b>Forever yours — Rabbit 🐰</b>
-
 </div>
 
-</div>
 </div>
 `;
-m.style.opacity="1";
-},300);
+
+let music=document.getElementById("music");
+music.play().catch(()=>{});
+
 }
 
 </script>
