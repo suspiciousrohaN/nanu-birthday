@@ -106,9 +106,18 @@ font-size:15px;
 line-height:1.6;
 margin-top:15px;
 text-align:left;
-min-height:200px;
+max-height:300px;
+overflow-y:auto;
+scroll-behavior:smooth;
+}
+.messageBox::-webkit-scrollbar{
+ width:4px;
 }
 
+.messageBox::-webkit-scrollbar-thumb{
+ background:#f4b6c2;
+ border-radius:10px;
+}
 /* Cake */
 .cake{
 font-size:50px;
