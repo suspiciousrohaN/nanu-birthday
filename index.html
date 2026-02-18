@@ -25,16 +25,16 @@ overflow:hidden;
 transition:background 2s ease;
 }
 
-/* Intro Black Screen */
+/* Intro */
 #intro{
 position:fixed;
 width:100%;
 height:100%;
 background:#000;
-z-index:10;
+z-index:20;
 }
 
-/* Main Container */
+/* Main */
 .container{
 text-align:center;
 opacity:0;
@@ -70,20 +70,27 @@ color:#444;
 font-weight:500;
 }
 
-/* Elegant floating particles */
-.particle{
-position:absolute;
-width:6px;
-height:6px;
-background:#f3c6d3;
-border-radius:50%;
-opacity:0.6;
-animation:float 8s linear infinite;
+/* Reveal Overlay */
+#blackout{
+position:fixed;
+width:100%;
+height:100%;
+background:#000;
+z-index:30;
+opacity:0;
+pointer-events:none;
+transition:opacity 1.5s ease;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-110vh);}
+/* Flicker effect */
+.flicker{
+animation:flick 1s linear 3;
+}
+
+@keyframes flick{
+0%{opacity:0.2;}
+50%{opacity:1;}
+100%{opacity:0.5;}
 }
 </style>
 </head>
@@ -91,6 +98,9 @@ animation:float 8s linear infinite;
 <body>
 
 <div id="intro"></div>
+<div id="blackout"></div>
+
+<audio id="bgMusic" src="music.mp3" loop></audio>
 
 <div class="container" id="main">
 <h1>Happy Birthday, My Tortoise 🐢</h1>
@@ -102,18 +112,15 @@ animation:float 8s linear infinite;
 
 <script>
 
-/* ===== SETTINGS ===== */
 let target = new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
 let preview = window.location.search.includes("preview=1");
 
-/* ===== INTRO FADE ===== */
 setTimeout(()=>{
 document.body.style.background="linear-gradient(135deg,#fff1f5,#ffe4ec)";
 document.getElementById("intro").style.display="none";
 document.getElementById("main").classList.add("show");
 },2000);
 
-/* ===== COUNTDOWN SYSTEM ===== */
 function startCountdown(){
 let timer=setInterval(()=>{
 let now=new Date().getTime();
@@ -121,7 +128,7 @@ let distance=target-now;
 
 if(distance<=0){
 clearInterval(timer);
-triggerReveal();
+startCinematicReveal();
 return;
 }
 
@@ -136,26 +143,32 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s";
 },1000);
 }
 
-/* ===== REVEAL TRIGGER (Scene 2 placeholder) ===== */
-function triggerReveal(){
-document.getElementById("countdown").innerHTML="It’s your moment ✨";
+function startCinematicReveal(){
+let blackout=document.getElementById("blackout");
+
+blackout.style.pointerEvents="auto";
+blackout.style.opacity="1";
+
+setTimeout(()=>{
+blackout.classList.add("flicker");
+
+let music=document.getElementById("bgMusic");
+music.volume=0.5;
+music.play().catch(()=>{});
+
+},2000);
+
+setTimeout(()=>{
+document.getElementById("countdown").innerHTML="✨";
+blackout.style.opacity="0";
+},4000);
 }
 
-/* ===== INITIAL CHECK ===== */
 if(preview || new Date().getTime()>=target){
-setTimeout(triggerReveal,2500);
+setTimeout(startCinematicReveal,2500);
 }else{
 startCountdown();
 }
-
-/* ===== PARTICLES ===== */
-setInterval(()=>{
-let p=document.createElement("div");
-p.className="particle";
-p.style.left=Math.random()*100+"vw";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),8000);
-},700);
 
 </script>
 
