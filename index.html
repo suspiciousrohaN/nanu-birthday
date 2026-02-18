@@ -137,7 +137,62 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s";
 }
 
 function showBirthday(){
-document.getElementById("countdown").innerHTML="It’s your moment ✨";
+
+document.getElementById("main").innerHTML = `
+<div style="
+background:#fffafc;
+border-radius:25px;
+padding:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+max-width:420px;
+margin:auto;
+">
+
+<h1 style="margin-bottom:15px;color:#e6a4b4;">Happy Birthday Nanu ❤️</h1>
+
+<div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
+
+<!-- photo frame -->
+<div style="
+background:white;
+padding:12px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+width:220px;
+">
+<img src="photo.jpg" style="width:100%;border-radius:8px;">
+</div>
+
+<!-- message frame -->
+<div style="
+background:white;
+padding:18px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+font-size:15px;
+line-height:1.6;
+text-align:left;
+">
+
+Happy Birthday, My Tortoise.<br><br>
+
+Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
+
+Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You’ve seen me at my best and my worst, and still chose to stay. That’s something I will never take for granted.<br><br>
+
+On your birthday, I don’t just wish you happiness...I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.<br><br>
+
+No matter where life takes us, I’m always going to be grateful that I get to love you.<br><br>
+
+Happy Birthday to the girl who feels like my forever my nanu ♡♡<br><br>
+
+<b>Forever yours — Rabbit 🐰</b>
+
+</div>
+
+</div>
+</div>
+`;
 }
 </script>
 
