@@ -1,1 +1,183 @@
-# index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Nanu ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Quicksand',sans-serif;
+}
+
+body{
+background:#000;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+transition:background 2s ease;
+}
+
+/* black intro overlay */
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+z-index:10;
+}
+
+/* main container */
+.container{
+opacity:0;
+transform:scale(0.95);
+transition:all 1.5s ease;
+text-align:center;
+padding:35px 25px;
+max-width:420px;
+}
+
+/* activated state */
+.show{
+opacity:1;
+transform:scale(1);
+}
+
+.title{
+font-family:'Pacifico',cursive;
+font-size:38px;
+color:#ff4f8b;
+margin-bottom:25px;
+text-shadow:0 0 20px rgba(255,80,140,0.3);
+}
+
+.board{
+background:#fff;
+border-radius:25px;
+padding:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+border:3px dashed #ffd1e3;
+position:relative;
+}
+
+.board:before{
+content:"🐢";
+position:absolute;
+top:-18px;
+left:-12px;
+font-size:28px;
+}
+
+.board:after{
+content:"🐰";
+position:absolute;
+bottom:-18px;
+right:-12px;
+font-size:28px;
+}
+
+#countdown{
+font-size:22px;
+color:#444;
+font-weight:600;
+letter-spacing:1px;
+}
+
+/* floating hearts */
+.heart{
+position:absolute;
+font-size:20px;
+opacity:0.6;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro"></div>
+
+<div class="container" id="main">
+<div class="title">Happy Birthday Nanu ❤️</div>
+
+<div class="board">
+<div id="countdown">Loading...</div>
+</div>
+</div>
+
+<script>
+
+// ========= SETTINGS =========
+let targetDate = new Date("Feb 22, 2026 00:00:00").getTime();
+let previewMode = window.location.search.includes("preview=1");
+
+// ========= INTRO ANIMATION =========
+setTimeout(()=>{
+document.body.style.background = "linear-gradient(135deg,#ffdce8,#fff6fb)";
+document.getElementById("intro").style.display="none";
+document.getElementById("main").classList.add("show");
+},2000);
+
+// ========= COUNTDOWN =========
+function startCountdown(){
+let timer = setInterval(()=>{
+let now = new Date().getTime();
+let distance = targetDate - now;
+
+if(distance <= 0){
+clearInterval(timer);
+reveal();
+return;
+}
+
+let days=Math.floor(distance/(1000*60*60*24));
+let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+let minutes=Math.floor((distance%(1000*60))/(1000*60));
+let seconds=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+
+},1000);
+}
+
+// ========= REVEAL LOGIC =========
+function reveal(){
+document.getElementById("countdown").innerHTML = "It’s your moment ✨";
+}
+
+// ========= INITIAL CHECK =========
+let nowCheck = new Date().getTime();
+if(previewMode || nowCheck >= targetDate){
+setTimeout(reveal,2500);
+}else{
+startCountdown();
+}
+
+// ========= FLOATING HEARTS =========
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},600);
+
+</script>
+
+</body>
+</html>
