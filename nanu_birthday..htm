@@ -5,198 +5,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Nanu ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:'Quicksand',sans-serif;
 }
 
 body{
+background:#000;
 height:100vh;
-background:linear-gradient(135deg,#ffe0ec,#fff5f9);
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
+transition:background 2s ease;
 }
 
+/* black intro overlay */
+#intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+z-index:10;
+}
+
+/* main container */
 .container{
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(15px);
-padding:40px 30px;
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-max-width:400px;
-text-align:center;
 opacity:0;
-transform:translateY(20px);
-animation:fadeIn 1.5s ease forwards;
+transform:scale(0.95);
+transition:all 1.5s ease;
+text-align:center;
+padding:35px 25px;
+max-width:420px;
 }
 
-@keyframes fadeIn{
-to{
+/* activated state */
+.show{
 opacity:1;
-transform:translateY(0);
-}
+transform:scale(1);
 }
 
-h1{
-font-family:'Playfair Display',serif;
+.title{
+font-family:'Pacifico',cursive;
 font-size:38px;
-color:#ff2e78;
-text-shadow:0 0 15px rgba(255,46,120,0.3);
+color:#ff4f8b;
+margin-bottom:25px;
+text-shadow:0 0 20px rgba(255,80,140,0.3);
+}
+
+.board{
+background:#fff;
+border-radius:25px;
+padding:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+border:3px dashed #ffd1e3;
+position:relative;
+}
+
+.board:before{
+content:"🐢";
+position:absolute;
+top:-18px;
+left:-12px;
+font-size:28px;
+}
+
+.board:after{
+content:"🐰";
+position:absolute;
+bottom:-18px;
+right:-12px;
+font-size:28px;
 }
 
 #countdown{
-margin-top:15px;
+font-size:22px;
+color:#444;
+font-weight:600;
+letter-spacing:1px;
+}
+
+/* floating hearts */
+.heart{
+position:absolute;
 font-size:20px;
-color:#555;
+opacity:0.6;
+animation:float 6s linear infinite;
 }
-
-img{
-width:100%;
-border-radius:18px;
-margin-top:20px;
-display:none;
-animation:zoomIn 2s ease forwards;
-}
-
-@keyframes zoomIn{
-from{transform:scale(0.9);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-.message{
-margin-top:20px;
-font-size:15px;
-line-height:1.8;
-color:#333;
-display:none;
-white-space:pre-line;
-}
-
-.corner{
-position:absolute;
-font-size:28px;
-opacity:0.7;
-}
-
-.rabbit{bottom:15px;right:20px;}
-.tortoise{top:15px;left:20px;}
-
-.petal{
-position:absolute;
-top:-20px;
-font-size:18px;
-animation:fall linear infinite;
-opacity:0.7;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
-}
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="corner tortoise">🐢</div>
-<div class="corner rabbit">🐰</div>
+<div id="intro"></div>
 
-<div class="container">
-<h1>Happy Birthday Nanu ❤️</h1>
+<div class="container" id="main">
+<div class="title">Happy Birthday Nanu ❤️</div>
+
+<div class="board">
 <div id="countdown">Loading...</div>
-
-<img src="photo.jpg" id="photo">
-
-<div class="message" id="msg"></div>
+</div>
 </div>
 
-<audio id="music" loop>
-<source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars3.wav" type="audio/wav">
-</audio>
-
 <script>
-// Countdown
-let target = new Date("Feb 22, 2026 00:00:00").getTime();
 
-let x = setInterval(function(){
+// ========= SETTINGS =========
+let targetDate = new Date("Feb 22, 2026 00:00:00").getTime();
+let previewMode = window.location.search.includes("preview=1");
+
+// ========= INTRO ANIMATION =========
+setTimeout(()=>{
+document.body.style.background = "linear-gradient(135deg,#ffdce8,#fff6fb)";
+document.getElementById("intro").style.display="none";
+document.getElementById("main").classList.add("show");
+},2000);
+
+// ========= COUNTDOWN =========
+function startCountdown(){
+let timer = setInterval(()=>{
 let now = new Date().getTime();
-let distance = target - now;
+let distance = targetDate - now;
 
-let days = Math.floor(distance/(1000*60*60*24));
-let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-let minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-let seconds = Math.floor((distance%(1000*60))/1000);
+if(distance <= 0){
+clearInterval(timer);
+reveal();
+return;
+}
 
-if(distance>0){
+let days=Math.floor(distance/(1000*60*60*24));
+let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+let minutes=Math.floor((distance%(1000*60))/(1000*60));
+let seconds=Math.floor((distance%(1000*60))/1000);
+
 document.getElementById("countdown").innerHTML =
 days+"d "+hours+"h "+minutes+"m "+seconds+"s";
-}else{
-clearInterval(x);
-document.getElementById("countdown").innerHTML="It’s your moment ✨";
-revealSurprise();
-}
+
 },1000);
-
-// Typewriter Message
-function revealSurprise(){
-document.getElementById("photo").style.display="block";
-document.getElementById("msg").style.display="block";
-document.getElementById("music").play();
-
-let text = `My Nanu, my beautiful Tortoise 🐢,
-
-You came into my life quietly,
-but you became the loudest happiness in my heart.
-
-You loved me when I was still learning how to love properly.
-You stayed when things were messy.
-You believed in me when I didn’t believe in myself.
-
-I promise you,
-Rabbit will always protect his Tortoise. 🐰❤️
-
-No matter how slow life moves,
-no matter how fast time runs,
-my love for you will never change.
-
-You are my peace.
-You are my home.
-You are my forever.
-
-Happy Birthday, my love.
-I belong to you — always. 💗`;
-
-let i=0;
-let speed=35;
-function typeWriter(){
-if(i<text.length){
-document.getElementById("msg").innerHTML += text.charAt(i);
-i++;
-setTimeout(typeWriter,speed);
-}
-}
-typeWriter();
 }
 
-// Falling petals
+// ========= REVEAL LOGIC =========
+function reveal(){
+document.getElementById("countdown").innerHTML = "It’s your moment ✨";
+}
+
+// ========= INITIAL CHECK =========
+let nowCheck = new Date().getTime();
+if(previewMode || nowCheck >= targetDate){
+setTimeout(reveal,2500);
+}else{
+startCountdown();
+}
+
+// ========= FLOATING HEARTS =========
 setInterval(()=>{
-let petal=document.createElement("div");
-petal.className="petal";
-petal.innerHTML="💗";
-petal.style.left=Math.random()*100+"vw";
-petal.style.animationDuration=(Math.random()*3+5)+"s";
-document.body.appendChild(petal);
-setTimeout(()=>petal.remove(),8000);
-},500);
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},600);
+
 </script>
 
 </body>
