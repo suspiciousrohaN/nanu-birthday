@@ -137,7 +137,10 @@ days+"d "+hours+"h "+minutes+"m "+seconds+"s";
 }
 function showBirthday(){
 
-document.getElementById("main").innerHTML = `
+let m = document.getElementById("main");
+m.style.opacity="0";
+setTimeout(()=>{
+m.innerHTML = `
 <div style="
 background:#fffafc;
 border-radius:25px;
@@ -192,6 +195,8 @@ Happy Birthday to the girl who feels like my forever my nanu ♡♡<br><br>
 </div>
 </div>
 `;
+m.style.opacity="1";
+},300);
 }
 
 </script>
