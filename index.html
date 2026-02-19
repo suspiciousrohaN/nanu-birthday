@@ -325,6 +325,7 @@ to{transform:scale(1.1);}
 /* ===== FIREFLIES ===== */
 .firefly{
 position:fixed;
+z-index:999;
 width:6px;
 height:6px;
 background:#ffd966;
@@ -439,13 +440,6 @@ d+"d "+h+"h "+m+"m "+s+"s";
 
 },1000);
 
-document.getElementById("tapScreen").onclick = function(){
-
-document.getElementById("tapScreen").style.display="none";
-document.getElementById("main").style.display="block";
-document.body.style.background="#000";
-document.getElementById("music").play();
-
 /* floating hearts */
 for(let i=0;i<25;i++){
 let heart=document.createElement("div");
@@ -528,6 +522,15 @@ f.style.animationDuration=(6+Math.random()*6)+"s";
 f.style.opacity=Math.random();
 document.body.appendChild(f);
 }
+  /* play music on first touch anywhere */
+let started=false;
+
+document.addEventListener("click",function(){
+if(!started){
+document.getElementById("music").play();
+started=true;
+}
+});
 </script>
 </body>
 </html>
