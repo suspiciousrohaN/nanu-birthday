@@ -9,38 +9,40 @@
 
 <style>
   .photoStack{
-  position:relative;
-  width:220px;
-  height:260px;
-  margin:40px auto 20px auto;
-}
+position:relative;
+width:180px;
+height:220px;
+margin:60px auto 40px auto;
+  }
 
 .photoStack img{
 position:absolute;
-width:100%;
+width:180px;
+height:220px;
+object-fit:cover;
 border-radius:18px;
-box-shadow:0 15px 35px rgba(0,0,0,0.4);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
 
 .photoStack img:nth-child(1){
 transform:rotate(-8deg);
-top:20px;
-left:-25px;
+top:10px;
+left:-40px;
 z-index:1;
 }
 
 .photoStack img:nth-child(2){
 transform:rotate(6deg);
 top:0px;
-left:25px;
-z-index:2;
+left:20px;
+z-index:3;
 }
 
 .photoStack img:nth-child(3){
 transform:rotate(-2deg);
-top:40px;
-left:0px;
-z-index:3;
+top:20px;
+left:60px;
+z-index:2;
 }
 
 /* back photo */
