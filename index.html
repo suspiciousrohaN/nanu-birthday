@@ -65,16 +65,29 @@ transition:.5s;
 
 /* countdown */
 .countdownBox{
-background:white;
-padding:30px 35px;
-border-radius:25px;
-box-shadow:0 10px 40px rgba(255,105,180,0.25);
+background:#ffc0d6;
+padding:35px 40px;
+border-radius:28px;
+box-shadow:0 15px 60px rgba(255,105,180,0.35);
 text-align:center;
 position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
 z-index:9999;
+}
+
+.title{
+font-size:36px;
+color:#ff2e7a;
+margin-bottom:15px;
+font-family:'Pacifico',cursive;
+}
+
+#countdown{
+font-size:30px;
+color:#222;
+font-weight:600;
 }
 .title{
 font-size:34px;
@@ -104,7 +117,7 @@ pointer-events:auto;
 }
 
 #main{
-display:block;
+display:none;
 min-height:100vh;
 padding:40px 20px 80px 20px;
 position:relative;
@@ -280,10 +293,9 @@ Happy Birthday to the girl who feels like my forever - my nanu <br><br>
 
 /* ===== SMART COUNTDOWN ===== */
 let previewMode = window.location.search.includes("preview=rohan");
-
 let target = previewMode
-? new Date().getTime()-2000   // opens instantly for YOU
-: new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();  // HER real countdown
+? new Date().getTime()-2000
+: new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
 
 let timer = setInterval(()=>{
 let now = new Date().getTime();
@@ -292,6 +304,7 @@ let dist = target - now;
 if(dist<=0){
 clearInterval(timer);
 document.getElementById("countdownBox").style.display="none";
+document.getElementById("main").style.display="block";
 document.getElementById("tapScreen").classList.add("show");
 return;
 }
