@@ -8,6 +8,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
+  /* ===== STRAWBERRY WORLD ===== */
+#strawberryBg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+
+/* change image here */
+background:url("strawberry.jpg") center/cover no-repeat;
+filter:brightness(0.9) saturate(1.1);
+}
 body{
 margin:0;
 background:black;
@@ -65,10 +78,10 @@ transition:.5s;
 
 /* countdown */
 .countdownBox{
-background:#ffc0d6;
+background:transparent;
+backdrop-filter:blur(6px);
 padding:35px 40px;
 border-radius:28px;
-box-shadow:0 15px 60px rgba(255,105,180,0.35);
 text-align:center;
 position:fixed;
 top:50%;
@@ -220,7 +233,7 @@ pointer-events:none;
 </head>
 
 <body>
-
+<div id="strawberryBg"></div>
 <div class="shooting-star"></div>
 <div class="shooting-star"></div>
 <div class="shooting-star"></div>
@@ -232,7 +245,7 @@ pointer-events:none;
 
 <div id="tapScreen">Tap to open your surprise ✨</div>
 
-<div id="sky">
+<div id="sky" style="display:none;">
 <canvas id="starsCanvas"></canvas>
 <div class="moon"></div>
 </div>
@@ -301,6 +314,7 @@ clearInterval(timer);
 document.getElementById("countdownBox").style.display="none";
 document.getElementById("main").style.display="block";
 document.getElementById("tapScreen").classList.add("show");
+document.getElementById("sky").style.display="block";
 return;
 }
 
