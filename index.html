@@ -16,13 +16,31 @@
 }
 
 .photoStack img{
-  position:absolute;
-  width:180px;
-  height:240px;
-  object-fit:cover;
-  border-radius:10px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.5);
-  transition:0.4s;
+position:absolute;
+width:100%;
+border-radius:18px;
+box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
+
+.photoStack img:nth-child(1){
+transform:rotate(-8deg);
+top:20px;
+left:-25px;
+z-index:1;
+}
+
+.photoStack img:nth-child(2){
+transform:rotate(6deg);
+top:0px;
+left:25px;
+z-index:2;
+}
+
+.photoStack img:nth-child(3){
+transform:rotate(-2deg);
+top:40px;
+left:0px;
+z-index:3;
 }
 
 /* back photo */
@@ -84,8 +102,8 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:linear-gradient(to bottom,#050510,#0d1025,#161a3d);
-z-index:-2;
+background:linear-gradient(to bottom,#050510,#0a0f2c);
+z-index:-1;
 overflow:hidden;
 }
 
@@ -114,11 +132,9 @@ box-shadow:
 }
 
 body{
-  margin:0;
-  font-family: 'Poppins', sans-serif;
-  background:transparent;
-  color:white;
-  overflow-x:hidden;
+  height:100vh;
+background:black;
+font-family:'Poppins',sans-serif;
 }
 
 /* Countdown Box */
@@ -168,25 +184,17 @@ pointer-events:auto;
 
 /* Main Reveal */
 #main{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
 display:none;
-justify-content:center;
-align-items:center;
-overflow-y:auto;
-padding:40px 15px;
+min-height:100vh;
+padding:40px 20px 80px 20px;
+position:relative;
+z-index:2;
 }
 
 .card{
-  max-width:500px;
-  margin:120px auto;
-  padding:25px;
-  position:relative;
-  z-index:5;
+  max-width:420px;
+margin:auto;
+text-align:center;
 }
 
 @keyframes fadeUp{
