@@ -485,7 +485,19 @@ s.x=Math.random()*canvas.width;
 requestAnimationFrame(drawStars);
 }
 drawStars();
-  
+  // moon glow on scroll
+let moon = document.querySelector(".moon");
+
+window.addEventListener("scroll", ()=>{
+ let sc = window.scrollY;
+
+ let glow = Math.min(sc/2,120);
+
+ moon.style.boxShadow =
+ `0 0 ${25+glow}px rgba(255,255,255,0.9),
+  0 0 ${60+glow}px rgba(255,255,255,0.5),
+  0 0 ${120+glow}px rgba(255,255,255,0.25)`;
+});
 </script>
 </body>
 </html>
