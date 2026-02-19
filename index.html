@@ -294,9 +294,8 @@ Happy Birthday to the girl who feels like my forever — my nanu ♡<br><br>
 
 <script>
 /* COUNTDOWN */
-let previewMode = window.location.search.includes("preview=rohan");
-let target = previewMode ? new Date().getTime()-1000 : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
-
+let previewMode = true;   // force open for testing
+let target = new Date().getTime()-2000;
 let timer=setInterval(()=>{
 let now=new Date().getTime();
 let dist=target-now;
