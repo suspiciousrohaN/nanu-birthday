@@ -8,16 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-/* ===== SHOOTING STARS ===== */
+body{
+margin:0;
+background:black;
+font-family:'Poppins',sans-serif;
+color:white;
+overflow-x:hidden;
+}
+
+/* shooting stars */
 .shooting-star{
 position:fixed;
-width:3px;
-height:3px;
-background:white;
-border-radius:50%;
+width:3px;height:3px;
+background:white;border-radius:50%;
 box-shadow:0 0 8px white,0 0 20px white;
-top:-50px;
-left:-50px;
+top:-50px;left:-50px;
 opacity:0;
 animation:shooting 5s linear infinite;
 z-index:2;
@@ -32,7 +37,7 @@ z-index:2;
 100%{transform:translate(1200px,700px);opacity:0;}
 }
 
-/* ===== NIGHT SKY ===== */
+/* sky */
 #sky{
 position:fixed;
 top:0;left:0;
@@ -58,15 +63,7 @@ box-shadow:0 0 25px rgba(255,255,255,0.9),0 0 60px rgba(255,255,255,0.5),0 0 120
 transition:.5s;
 }
 
-/* ===== BODY ===== */
-body{
-margin:0;
-background:black;
-font-family:'Poppins',sans-serif;
-color:white;
-}
-
-/* ===== COUNTDOWN ===== */
+/* countdown */
 .countdownBox{
 background:white;
 padding:30px 35px;
@@ -74,8 +71,7 @@ border-radius:25px;
 box-shadow:0 10px 40px rgba(255,105,180,0.25);
 text-align:center;
 position:absolute;
-top:50%;
-left:50%;
+top:50%;left:50%;
 transform:translate(-50%,-50%);
 z-index:5;
 }
@@ -87,7 +83,6 @@ font-family:'Pacifico',cursive;
 }
 #countdown{font-size:28px;color:#333;}
 
-/* ===== TAP SCREEN ===== */
 #tapScreen{
 position:fixed;
 top:0;left:0;
@@ -107,7 +102,6 @@ opacity:1;
 pointer-events:auto;
 }
 
-/* ===== MAIN ===== */
 #main{
 display:block;
 min-height:100vh;
@@ -138,11 +132,9 @@ font-size:17px;
 line-height:1.8;
 text-align:left;
 margin-top:20px;
-color:white;
 }
 
 /* candles */
-.candleWrap{display:flex;justify-content:center;gap:40px;margin:30px 0 10px;}
 .candle{
 width:22px;height:70px;
 background:linear-gradient(#fff,#f1e6d2);
@@ -155,10 +147,11 @@ position:absolute;
 top:-28px;left:50%;
 transform:translateX(-50%);
 width:16px;height:26px;
-background:radial-gradient(circle at 50% 60%, #fff6b0 0%, #ffd36b 40%, #ff9b3d 70%, #ff5a00 100%);
+background:radial-gradient(circle,#fff6b0,#ff5a00);
 border-radius:50%;
 animation:flicker .15s infinite alternate;
 box-shadow:0 0 20px orange,0 0 40px rgba(255,120,20,0.5);
+cursor:pointer;
 }
 @keyframes flicker{
 0%{transform:translateX(-50%) scaleY(1);}
@@ -196,36 +189,24 @@ background:radial-gradient(circle,#ffd54d,#ff8c00);
 border-radius:50%;
 box-shadow:0 0 15px orange;
 animation:flicker .15s infinite alternate;
+cursor:pointer;
 }
 
 /* fireflies */
 .firefly{
 position:fixed;
-  width:6px;
-  height:6px;
-  background:#ffd966;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:2;
-
-  box-shadow:
-    0 0 6px #ffd966,
-    0 0 12px #ffea9e,
-    0 0 25px rgba(255,255,200,0.9);
-
-  animation:float linear infinite;
+width:6px;height:6px;
+background:#ffd966;
+border-radius:50%;
+box-shadow:0 0 6px #ffd966,0 0 20px rgba(255,255,200,0.8);
+animation:float linear infinite;
+z-index:2;
+pointer-events:none;
 }
-
 @keyframes float{
-  0%{
-    transform:translateY(0px) translateX(0px);
-  }
-  50%{
-    transform:translateY(-40px) translateX(20px);
-  }
-  100%{
-    transform:translateY(-80px) translateX(-10px);
-  }
+0%{transform:translateY(0px) translateX(0px);}
+50%{transform:translateY(-40px) translateX(20px);}
+100%{transform:translateY(-80px) translateX(-10px);}
 }
 </style>
 </head>
@@ -258,63 +239,47 @@ position:fixed;
 </div>
 
 <div class="message">
-Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
-
-Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You’ve seen me at my best and my worst, and still chose to stay. That’s something I will never take for granted.<br><br>
-
-On your birthday, I don’t just wish you happiness... I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.<br><br>
-
-No matter where life takes us, I’m always going to be grateful that I get to love you.<br><br>
-
-Happy Birthday to the girl who feels like my forever — my nanu ♡<br><br>
+Happy Birthday My Tortoise ❤️<br><br>
+You are my peace, my happiness, my forever.
+</div>
 
 <div style="display:flex; justify-content:center; align-items:flex-end; gap:20px; margin-top:10px;">
 
-  <!-- left candle -->
-  <div class="candle">
-    <div class="flame" onclick="blowOne(this)"></div>
-  </div>
+<div class="candle">
+<div class="flame" onclick="blowOne(this)"></div>
+</div>
 
-  <!-- realistic cake -->
-  <div class="realCake">
-    <div class="cakeCandle">
-      <div class="cakeFlame" onclick="blowOne(this)"></div>
-    </div>
-  </div>
+<div class="realCake">
+<div class="cakeCandle">
+<div class="cakeFlame" onclick="blowOne(this)"></div>
+</div>
+</div>
 
-  <!-- right candle -->
-  <div class="candle">
-    <div class="flame" onclick="blowOne(this)"></div>
-  </div>
+<div class="candle">
+<div class="flame" onclick="blowOne(this)"></div>
+</div>
 
 </div>
 
+</div>
+</div>
 
 <audio id="music" src="music.mp3"></audio>
 
 <script>
-/* COUNTDOWN */
-let previewMode = true;   // force open for testing
-let target = new Date().getTime()-2000;
+
+/* FORCE PREVIEW */
+let target=new Date().getTime()-2000;
 let timer=setInterval(()=>{
 let now=new Date().getTime();
 let dist=target-now;
-
 if(dist<=0){
 clearInterval(timer);
 document.getElementById("countdownBox").style.display="none";
 document.getElementById("tapScreen").classList.add("show");
-return;
 }
-
-let d=Math.floor(dist/(1000*60*60*24));
-let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((dist%(1000*60*60))/(1000*60));
-let s=Math.floor((dist%(1000*60))/1000);
-document.getElementById("countdown").innerHTML=d+"d "+h+"h "+m+"m "+s+"s";
 },1000);
 
-/* TAP TO START */
 document.getElementById("tapScreen").onclick=function(){
 this.style.display="none";
 document.getElementById("music").play();
@@ -327,7 +292,7 @@ function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight;}
 resizeCanvas();window.addEventListener("resize",resizeCanvas);
 
 let stars=[];
-for(let i=0;i<160;i++){
+for(let i=0;i<150;i++){
 stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2,d:Math.random()*0.5});
 }
 function drawStars(){
@@ -341,61 +306,26 @@ requestAnimationFrame(drawStars);
 }
 drawStars();
 
-/* MOON GLOW */
-let moon=document.querySelector(".moon");
-window.addEventListener("scroll",()=>{
-let sc=window.scrollY;
-let glow=Math.min(sc/2,120);
-moon.style.boxShadow=`0 0 ${25+glow}px rgba(255,255,255,0.9),
-0 0 ${60+glow}px rgba(255,255,255,0.5),
-0 0 ${120+glow}px rgba(255,255,255,0.25)`;
-});
-
-/* ===== PREMIUM FIREFLIES ===== */
-function createFireflies(){
-  for(let i=0;i<30;i++){
-    let f=document.createElement("div");
-    f.className="firefly";
-
-    f.style.left=Math.random()*100+"vw";
-    f.style.top=Math.random()*100+"vh";
-
-    f.style.animationDuration=(8+Math.random()*6)+"s";
-    f.style.animationDelay=(Math.random()*5)+"s";
-
-    f.style.opacity=Math.random();
-
-    document.body.appendChild(f);
-  }
+/* FIRELIES */
+for(let i=0;i<25;i++){
+let f=document.createElement("div");
+f.className="firefly";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+f.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(f);
 }
 
-createFireflies();
-  /* ===== 3D PARALLAX CAMERA ===== */
-document.addEventListener("mousemove", (e)=>{
-  let x = (window.innerWidth/2 - e.clientX)/40;
-  let y = (window.innerHeight/2 - e.clientY)/40;
-
-  document.querySelector("#main").style.transform =
-  `translate(${x}px,${y}px)`;
-});
-
-document.addEventListener("touchmove", (e)=>{
-  let touch = e.touches[0];
-  let x = (window.innerWidth/2 - touch.clientX)/40;
-  let y = (window.innerHeight/2 - touch.clientY)/40;
-
-  document.querySelector("#main").style.transform =
-  `translate(${x}px,${y}px)`;
-});
-  /* ===== BLOW CANDLES ===== */
+/* BLOW ONE CANDLE */
 function blowOne(el){
-  el.style.transition="0.6s";
-  el.style.opacity="0";
-  el.style.transform="scale(0)";
-  
-  navigator.vibrate?.(80);
-  }
+if(el.classList.contains("blown")) return;
+el.classList.add("blown");
+el.style.transition="0.6s";
+el.style.opacity="0";
+el.style.transform="scale(0)";
+if(navigator.vibrate) navigator.vibrate(80);
 }
+
 </script>
 </body>
 </html>
