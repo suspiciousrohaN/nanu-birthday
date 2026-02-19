@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-  /* ===== SHOOTING STAR ===== */
+/* ===== SHOOTING STARS ===== */
 .shooting-star{
 position:fixed;
 width:3px;
@@ -20,246 +20,94 @@ top:-50px;
 left:-50px;
 opacity:0;
 animation:shooting 5s linear infinite;
+z-index:2;
 }
-
-/* different delays for each */
-.shooting-star:nth-child(1){
-animation-delay:0s;
-}
-.shooting-star:nth-child(2){
-animation-delay:2s;
-}
-.shooting-star:nth-child(3){
-animation-delay:4s;
-}
+.shooting-star:nth-child(1){animation-delay:0s;}
+.shooting-star:nth-child(2){animation-delay:2s;}
+.shooting-star:nth-child(3){animation-delay:4s;}
 
 @keyframes shooting{
-0%{
-transform:translate(-200px,-200px);
-opacity:0;
-}
-10%{
-opacity:1;
-}
-100%{
-transform:translate(1200px,700px);
-opacity:0;
-}
-}
-  /* ===== REALISTIC CAKE ===== */
-.realCake{
-  position:relative;
-  width:90px;
-  height:60px;
-  background:linear-gradient(#ffb6c1,#ff69b4);
-  border-radius:12px;
-  box-shadow:0 0 25px rgba(255,182,193,0.6);
+0%{transform:translate(-200px,-200px);opacity:0;}
+10%{opacity:1;}
+100%{transform:translate(1200px,700px);opacity:0;}
 }
 
-/* cake cream top */
-.realCake:before{
-  content:"";
-  position:absolute;
-  top:-12px;
-  left:0;
-  width:100%;
-  height:20px;
-  background:linear-gradient(#fff,#ffe4e1);
-  border-radius:12px;
-}
-
-/* small candle on cake */
-.cakeCandle{
-  position:absolute;
-  top:-35px;
-  left:50%;
-  transform:translateX(-50%);
-  width:8px;
-  height:25px;
-  background:#fff;
-  border-radius:3px;
-}
-
-/* flame */
-.cakeFlame{
-  position:absolute;
-  top:-18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:10px;
-  height:18px;
-  background:radial-gradient(circle,#ffd54d,#ff8c00);
-  border-radius:50%;
-  box-shadow:0 0 15px orange;
-  animation:flicker 0.15s infinite alternate;
-}
-
-@keyframes flicker{
-  from{transform:translateX(-50%) scale(1);}
-  to{transform:translateX(-50%) scale(1.15);}
-}
-  /* ===== REALISTIC CANDLES ===== */
-
-.candleWrap{
-display:flex;
-justify-content:center;
-gap:40px;
-margin:30px 0 10px 0;
-}
-
-.candle{
-width:22px;
-height:70px;
-background:linear-gradient(#fff,#f1e6d2);
-border-radius:6px;
-position:relative;
-box-shadow:0 0 20px rgba(255,220,150,0.4);
-}
-
-/* flame */
-.flame{
-position:absolute;
-top:-28px;
-left:50%;
-transform:translateX(-50%);
-width:16px;
-height:26px;
-background:radial-gradient(circle at 50% 60%, #fff6b0 0%, #ffd36b 40%, #ff9b3d 70%, #ff5a00 100%);
-border-radius:50% 50% 50% 50%;
-filter:blur(0.2px);
-animation:flicker 0.15s infinite alternate;
-box-shadow:
-0 0 15px rgba(255,180,80,0.9),
-0 0 35px rgba(255,120,20,0.6),
-0 0 60px rgba(255,80,0,0.4);
-}
-
-/* flame animation */
-@keyframes flicker{
-0%{ transform:translateX(-50%) scaleY(1) rotate(-1deg); }
-50%{ transform:translateX(-50%) scaleY(1.1) rotate(1deg); }
-100%{ transform:translateX(-50%) scaleY(0.95) rotate(-1deg); }
-}
-  /* ===== CLEAN MINI PHOTO COLLAGE ===== */
-.photoStack{
- display:flex;
- justify-content:center;
- align-items:center;
- gap:12px;
- margin:40px auto;
- z-index:5;
- position:relative;
-}
-
-.photoStack img{
- width:95px;
- height:140px;
- object-fit:cover;
- border-radius:14px;
- box-shadow:0 8px 25px rgba(0,0,0,0.5);
-}
-
-/* tilt style */
-.photoStack img:nth-child(1){
- transform:rotate(-6deg);
-}
-
-.photoStack img:nth-child(2){
- transform:scale(1.08);
-}
-
-.photoStack img:nth-child(3){
- transform:rotate(6deg);
-}
-/* ===== NIGHT SKY LAYER ===== */
+/* ===== NIGHT SKY ===== */
 #sky{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;
+width:100%;height:100%;
 background:linear-gradient(to bottom,#050510,#0a0f2c);
 z-index:1;
 overflow:hidden;
 }
 
-/* canvas stars */
 #starsCanvas{
 position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;
+width:100%;height:100%;
 }
 
-/* glowing moon */
 .moon{
-transition:0.5s;
 position:absolute;
-top:70px;
-right:70px;
-width:90px;
-height:90px;
+top:70px;right:70px;
+width:90px;height:90px;
 border-radius:50%;
 background:radial-gradient(circle at 30% 30%,#fff,#ddd 60%,#bbb);
-box-shadow:
-0 0 25px rgba(255,255,255,0.9),
-0 0 60px rgba(255,255,255,0.5),
-0 0 120px rgba(255,255,255,0.25);
+box-shadow:0 0 25px rgba(255,255,255,0.9),0 0 60px rgba(255,255,255,0.5),0 0 120px rgba(255,255,255,0.25);
+transition:.5s;
 }
 
+/* ===== BODY ===== */
 body{
-  height:100vh;
+margin:0;
 background:black;
 font-family:'Poppins',sans-serif;
+color:white;
 }
 
-/* Countdown Box */
+/* ===== COUNTDOWN ===== */
 .countdownBox{
 background:white;
 padding:30px 35px;
 border-radius:25px;
 box-shadow:0 10px 40px rgba(255,105,180,0.25);
 text-align:center;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+z-index:5;
 }
-
 .title{
 font-size:34px;
 color:#ff4f8b;
 margin-bottom:15px;
 font-family:'Pacifico',cursive;
 }
+#countdown{font-size:28px;color:#333;}
 
-#countdown{
-font-size:28px;
-color:#333;
-}
-
-/* Tap Screen */
+/* ===== TAP SCREEN ===== */
 #tapScreen{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;
+width:100%;height:100%;
 background:black;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-color:white;
 font-size:24px;
 opacity:0;
 pointer-events:none;
 transition:1s;
+z-index:10;
 }
-
 #tapScreen.show{
 opacity:1;
 pointer-events:auto;
 }
 
-/* Main Reveal */
+/* ===== MAIN ===== */
 #main{
 display:block;
 min-height:100vh;
@@ -267,79 +115,101 @@ padding:40px 20px 80px 20px;
 position:relative;
 z-index:3;
 }
+.card{max-width:420px;margin:auto;text-align:center;}
 
-.card{
-  max-width:420px;
-margin:auto;
-text-align:center;
+.photoStack{
+display:flex;
+justify-content:center;
+gap:12px;
+margin:40px auto;
 }
-
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px);}
-to{opacity:1;transform:translateY(0);}
+.photoStack img{
+width:95px;height:140px;
+object-fit:cover;
+border-radius:14px;
+box-shadow:0 8px 25px rgba(0,0,0,0.5);
 }
+.photoStack img:nth-child(1){transform:rotate(-6deg);}
+.photoStack img:nth-child(2){transform:scale(1.08);}
+.photoStack img:nth-child(3){transform:rotate(6deg);}
 
-/* Polaroid */
-.polaroid{
-background:white;
-padding:12px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-margin-bottom:18px;
-}
-
-.polaroid img{
-width:100%;
-border-radius:10px;
-}
-
-/* Message */
 .message{
-  font-size:17px;
-  line-height:1.8;
-  text-align:left;
-  margin-top:20px;
-  color:white;
-  overflow-y:auto;
-scroll-behavior:smooth;
+font-size:17px;
+line-height:1.8;
+text-align:left;
+margin-top:20px;
+color:white;
 }
 
-.message::-webkit-scrollbar{width:4px;}
-.message::-webkit-scrollbar-thumb{
-background:#ff8fb1;
-border-radius:10px;
+/* candles */
+.candleWrap{display:flex;justify-content:center;gap:40px;margin:30px 0 10px;}
+.candle{
+width:22px;height:70px;
+background:linear-gradient(#fff,#f1e6d2);
+border-radius:6px;
+position:relative;
+box-shadow:0 0 20px rgba(255,220,150,0.4);
+}
+.flame{
+position:absolute;
+top:-28px;left:50%;
+transform:translateX(-50%);
+width:16px;height:26px;
+background:radial-gradient(circle at 50% 60%, #fff6b0 0%, #ffd36b 40%, #ff9b3d 70%, #ff5a00 100%);
+border-radius:50%;
+animation:flicker .15s infinite alternate;
+box-shadow:0 0 20px orange,0 0 40px rgba(255,120,20,0.5);
+}
+@keyframes flicker{
+0%{transform:translateX(-50%) scaleY(1);}
+100%{transform:translateX(-50%) scaleY(1.15);}
 }
 
-/* Cake */
-.cake{
-font-size:55px;
-margin-top:15px;
-animation:glow 1s infinite alternate;
+/* cake */
+.realCake{
+position:relative;
+width:90px;height:60px;
+background:linear-gradient(#ffb6c1,#ff69b4);
+border-radius:12px;
+box-shadow:0 0 25px rgba(255,182,193,0.6);
+}
+.realCake:before{
+content:"";
+position:absolute;
+top:-12px;left:0;
+width:100%;height:20px;
+background:linear-gradient(#fff,#ffe4e1);
+border-radius:12px;
+}
+.cakeCandle{
+position:absolute;
+top:-35px;left:50%;
+transform:translateX(-50%);
+width:8px;height:25px;background:#fff;border-radius:3px;
+}
+.cakeFlame{
+position:absolute;
+top:-18px;left:50%;
+transform:translateX(-50%);
+width:10px;height:18px;
+background:radial-gradient(circle,#ffd54d,#ff8c00);
+border-radius:50%;
+box-shadow:0 0 15px orange;
+animation:flicker .15s infinite alternate;
 }
 
-@keyframes glow{
-from{transform:scale(1);}
-to{transform:scale(1.1);}
-}
-
-/* ===== FIREFLIES ===== */
+/* fireflies */
 .firefly{
 position:fixed;
-z-index:999;
-width:6px;
-height:6px;
+width:6px;height:6px;
 background:#ffd966;
 border-radius:50%;
-box-shadow:
-0 0 6px #ffd966,
-0 0 12px #ffea9e,
-0 0 20px rgba(255,255,200,0.8);
+box-shadow:0 0 6px #ffd966,0 0 20px rgba(255,255,200,0.8);
 animation:fly linear infinite;
-opacity:0.8;
+opacity:.8;
 z-index:2;
 pointer-events:none;
 }
-
 @keyframes fly{
 from{transform:translateY(100vh);}
 to{transform:translateY(-10vh);}
@@ -348,17 +218,18 @@ to{transform:translateY(-10vh);}
 </head>
 
 <body>
-<div class="shooting-star" id="star"></div>
+
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+
 <div class="countdownBox" id="countdownBox">
 <div class="title">Counting down to your day 🐢</div>
 <div id="countdown">Loading...</div>
 </div>
 
-<div id="tapScreen">
-<div>Tap to open your surprise ✨</div>
-</div>
+<div id="tapScreen">Tap to open your surprise ✨</div>
 
-<!-- NIGHT SKY BACKGROUND -->
 <div id="sky">
 <canvas id="starsCanvas"></canvas>
 <div class="moon"></div>
@@ -372,50 +243,32 @@ to{transform:translateY(-10vh);}
 <img src="photo2.jpg">
 <img src="photo3.jpg">
 </div>
+
 <div class="message">
 Happy Birthday, My Tortoise.<br><br>
-
-Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
-
-Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You’ve seen me at my best and my worst, and still chose to stay. That’s something I will never take for granted.<br><br>
-
-On your birthday, I don’t just wish you happiness... I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.<br><br>
-
-No matter where life takes us, I’m always going to be grateful that I get to love you.<br><br>
-
-Happy Birthday to the girl who feels like my forever — my nanu ♡<br><br>
-
+Today isn’t just the day you were born… it’s the day the world was blessed with the most beautiful soul I’ve ever known.<br><br>
 Forever yours — Rabbit 🐰
 <br><br>
 
-<div style="display:flex; justify-content:center; align-items:flex-end; gap:20px; margin-top:10px;">
+<div style="display:flex;justify-content:center;align-items:flex-end;gap:20px;margin-top:10px;">
+<div class="candle"><div class="flame"></div></div>
 
-  <!-- left candle -->
-  <div class="candle">
-    <div class="flame"></div>
-  </div>
-
-  <!-- realistic cake -->
 <div class="realCake">
-   <div class="cakeCandle">
-      <div class="cakeFlame"></div>
-   </div>
+<div class="cakeCandle"><div class="cakeFlame"></div></div>
 </div>
 
-  <!-- right candle -->
-  <div class="candle">
-    <div class="flame"></div>
-  </div>
-
+<div class="candle"><div class="flame"></div></div>
+</div>
+</div>
+</div>
 </div>
 
 <audio id="music" src="music.mp3"></audio>
 
 <script>
+/* COUNTDOWN */
 let previewMode = window.location.search.includes("preview=rohan");
-let target = previewMode 
-? new Date().getTime()-1000
-: new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
+let target = previewMode ? new Date().getTime()-1000 : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
 
 let timer=setInterval(()=>{
 let now=new Date().getTime();
@@ -432,86 +285,47 @@ let d=Math.floor(dist/(1000*60*60*24));
 let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
 let m=Math.floor((dist%(1000*60*60))/(1000*60));
 let s=Math.floor((dist%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML=
-d+"d "+h+"h "+m+"m "+s+"s";
-
+document.getElementById("countdown").innerHTML=d+"d "+h+"h "+m+"m "+s+"s";
 },1000);
 
-/* floating hearts */
-for(let i=0;i<25;i++){
-let heart=document.createElement("div");
-heart.innerHTML="❤";
-heart.className="heart";
-heart.style.left=Math.random()*100+"%";
-heart.style.animationDuration=(3+Math.random()*5)+"s";
-document.body.appendChild(heart);
-}
-
-/* fireflies */
-for(let i=0;i<18;i++){
-let f=document.createElement("div");
-f.className="firefly";
-f.style.left=Math.random()*100+"%";
-f.style.animationDuration=(6+Math.random()*10)+"s";
-document.body.appendChild(f);
-}
-
+/* TAP TO START */
+document.getElementById("tapScreen").onclick=function(){
+this.style.display="none";
+document.getElementById("music").play();
 };
-  /* ===== CINEMATIC STARFIELD ===== */
-const canvas = document.getElementById("starsCanvas");
-const ctx = canvas.getContext("2d");
 
-function resizeCanvas(){
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+/* STARS */
+const canvas=document.getElementById("starsCanvas");
+const ctx=canvas.getContext("2d");
+function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight;}
+resizeCanvas();window.addEventListener("resize",resizeCanvas);
 
-let stars = [];
+let stars=[];
 for(let i=0;i<160;i++){
-stars.push({
-x: Math.random()*canvas.width,
-y: Math.random()*canvas.height,
-r: Math.random()*1.2,
-d: Math.random()*0.5
-});
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2,d:Math.random()*0.5});
 }
-
 function drawStars(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.fillStyle="white";
-
-for(let i=0;i<stars.length;i++){
-let s=stars[i];
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
-s.y += s.d;
-
-if(s.y>canvas.height){
-s.y=0;
-s.x=Math.random()*canvas.width;
-}
+for(let s of stars){
+ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+s.y+=s.d;if(s.y>canvas.height){s.y=0;s.x=Math.random()*canvas.width;}
 }
 requestAnimationFrame(drawStars);
 }
 drawStars();
-  // moon glow on scroll
-let moon = document.querySelector(".moon");
 
-window.addEventListener("scroll", ()=>{
- let sc = window.scrollY;
-
- let glow = Math.min(sc/2,120);
-
- moon.style.boxShadow =
- `0 0 ${25+glow}px rgba(255,255,255,0.9),
-  0 0 ${60+glow}px rgba(255,255,255,0.5),
-  0 0 ${120+glow}px rgba(255,255,255,0.25)`;
+/* MOON GLOW */
+let moon=document.querySelector(".moon");
+window.addEventListener("scroll",()=>{
+let sc=window.scrollY;
+let glow=Math.min(sc/2,120);
+moon.style.boxShadow=`0 0 ${25+glow}px rgba(255,255,255,0.9),
+0 0 ${60+glow}px rgba(255,255,255,0.5),
+0 0 ${120+glow}px rgba(255,255,255,0.25)`;
 });
-  /* fireflies generator */
+
+/* FIREFLIES */
 for(let i=0;i<25;i++){
 let f=document.createElement("div");
 f.className="firefly";
@@ -520,15 +334,6 @@ f.style.animationDuration=(6+Math.random()*6)+"s";
 f.style.opacity=Math.random();
 document.body.appendChild(f);
 }
-  /* play music on first touch anywhere */
-let started=false;
-
-document.addEventListener("click",function(){
-if(!started){
-document.getElementById("music").play();
-started=true;
-}
-});
 </script>
 </body>
 </html>
