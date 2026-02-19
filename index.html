@@ -322,17 +322,24 @@ from{transform:scale(1);}
 to{transform:scale(1.1);}
 }
 
-/* Floating hearts */
-.heart{
+/* ===== FIREFLIES ===== */
+.firefly{
 position:fixed;
-bottom:-10px;
-font-size:20px;
-animation:float 6s linear infinite;
-color:#ff6fa5;
+width:6px;
+height:6px;
+background:#ffd966;
+border-radius:50%;
+box-shadow:
+0 0 6px #ffd966,
+0 0 12px #ffea9e,
+0 0 20px rgba(255,255,200,0.8);
+animation:fly linear infinite;
+opacity:0.8;
 }
-@keyframes float{
-from{transform:translateY(0);}
-to{transform:translateY(-110vh);}
+
+@keyframes fly{
+from{transform:translateY(100vh);}
+to{transform:translateY(-10vh);}
 }
 </style>
 </head>
@@ -498,6 +505,15 @@ window.addEventListener("scroll", ()=>{
   0 0 ${60+glow}px rgba(255,255,255,0.5),
   0 0 ${120+glow}px rgba(255,255,255,0.25)`;
 });
+  /* fireflies generator */
+for(let i=0;i<25;i++){
+let f=document.createElement("div");
+f.className="firefly";
+f.style.left=Math.random()*100+"vw";
+f.style.animationDuration=(6+Math.random()*6)+"s";
+f.style.opacity=Math.random();
+document.body.appendChild(f);
+}
 </script>
 </body>
 </html>
