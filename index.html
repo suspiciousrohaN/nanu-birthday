@@ -277,22 +277,33 @@ Happy Birthday to the girl who feels like my forever - my nanu <br><br>
 
 <script>
 
-/* FORCE PREVIEW */
-let target=new Date().getTime()-2000;
-let timer=setInterval(()=>{
-let now=new Date().getTime();
-let dist=target-now;
+/* ===== SMART COUNTDOWN ===== */
+let previewMode = window.location.search.includes("preview=rohan");
+
+let target = previewMode
+? new Date().getTime()-2000   // opens instantly for YOU
+: new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();  // HER real countdown
+
+let timer = setInterval(()=>{
+let now = new Date().getTime();
+let dist = target - now;
+
 if(dist<=0){
 clearInterval(timer);
 document.getElementById("countdownBox").style.display="none";
 document.getElementById("tapScreen").classList.add("show");
+return;
 }
-},1000);
 
-document.getElementById("tapScreen").onclick=function(){
-this.style.display="none";
-document.getElementById("music").play();
-};
+let d=Math.floor(dist/(1000*60*60*24));
+let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((dist%(1000*60*60))/(1000*60));
+let s=Math.floor((dist%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+d+"d "+h+"h "+m+"m "+s+"s";
+
+},1000);
 
 /* STARS */
 const canvas=document.getElementById("starsCanvas");
