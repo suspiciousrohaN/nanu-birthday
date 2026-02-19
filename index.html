@@ -8,6 +8,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
+  .photoStack{
+position:relative;
+width:220px;
+margin:20px auto;
+height:220px;
+}
+
+.photoStack img{
+position:absolute;
+width:100%;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.4s;
+}
+
+.photoStack img:nth-child(1){
+transform:rotate(-8deg);
+z-index:1;
+}
+
+.photoStack img:nth-child(2){
+transform:rotate(6deg);
+top:-8px;
+left:8px;
+z-index:2;
+}
+
+.photoStack img:nth-child(3){
+transform:rotate(-2deg);
+top:-15px;
+left:15px;
+z-index:3;
+}
 /* ===== NIGHT SKY LAYER ===== */
 #sky{
 position:fixed;
@@ -190,10 +223,6 @@ to{transform:translateY(-110vh);}
 </head>
 
 <body>
-<div id="sky">
-<canvas id="starsCanvas"></canvas>
-<div class="moon"></div>
-</div>
 <div class="countdownBox" id="countdownBox">
 <div class="title">Counting down to your day 🐢</div>
 <div id="countdown">Loading...</div>
@@ -205,9 +234,14 @@ to{transform:translateY(-110vh);}
 
 <div id="main">
 <div class="card">
-
-<div class="polaroid">
-<img src="photo.jpg">
+<div id="sky">
+<canvas id="starsCanvas"></canvas>
+<div class="moon"></div>
+</div>
+<div class="photoStack">
+  <img src="photo1.jpg">
+  <img src="photo2.jpg">
+  <img src="photo3.jpg">
 </div>
 
 <div class="message">
