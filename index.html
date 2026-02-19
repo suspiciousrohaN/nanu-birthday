@@ -363,6 +363,23 @@ function createFireflies(){
 }
 
 createFireflies();
+  /* ===== 3D PARALLAX CAMERA ===== */
+document.addEventListener("mousemove", (e)=>{
+  let x = (window.innerWidth/2 - e.clientX)/40;
+  let y = (window.innerHeight/2 - e.clientY)/40;
+
+  document.querySelector("#main").style.transform =
+  `translate(${x}px,${y}px)`;
+});
+
+document.addEventListener("touchmove", (e)=>{
+  let touch = e.touches[0];
+  let x = (window.innerWidth/2 - touch.clientX)/40;
+  let y = (window.innerHeight/2 - touch.clientY)/40;
+
+  document.querySelector("#main").style.transform =
+  `translate(${x}px,${y}px)`;
+});
 </script>
 </body>
 </html>
