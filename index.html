@@ -8,91 +8,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-  .photoStack{
+  /* ===== CLEAN MINI PHOTO COLLAGE ===== */
+.photoStack{
  display:flex;
  justify-content:center;
  align-items:center;
- gap:18px;
- margin:60px auto 80px auto;
+ gap:12px;
+ margin:40px auto;
+ z-index:5;
+ position:relative;
 }
 
-/* all images */
 .photoStack img{
- width:120px;
- height:170px;
+ width:95px;
+ height:140px;
  object-fit:cover;
- border-radius:18px;
- box-shadow:0 15px 35px rgba(0,0,0,0.5);
- transition:0.4s;
+ border-radius:14px;
+ box-shadow:0 8px 25px rgba(0,0,0,0.5);
 }
 
-/* tilt left */
+/* tilt style */
 .photoStack img:nth-child(1){
- transform:rotate(-10deg);
-}
-
-/* center main */
-.photoStack img:nth-child(2){
- transform:rotate(2deg) scale(1.05);
- z-index:2;
-}
-
-/* tilt right */
-.photoStack img:nth-child(3){
- transform:rotate(10deg);
-}
-
-/* back photo */
-.photoStack img:nth-child(1){
-  transform:rotate(-10deg);
-  left:0;
-  top:20px;
-  z-index:1;
-  opacity:0.9;
-}
-
-/* middle */
-.photoStack img:nth-child(2){
-  transform:rotate(8deg);
-  left:40px;
-  top:10px;
-  z-index:2;
-  opacity:0.95;
-}
-
-/* front main */
-.photoStack img:nth-child(3){
-  transform:rotate(-2deg);
-  left:20px;
-  top:0;
-  z-index:3;
-}
-
-.photoStack img{
-position:absolute;
-width:100%;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-transition:0.4s;
-}
-
-.photoStack img:nth-child(1){
-transform:rotate(-8deg);
-z-index:1;
+ transform:rotate(-6deg);
 }
 
 .photoStack img:nth-child(2){
-transform:rotate(6deg);
-top:-8px;
-left:8px;
-z-index:2;
+ transform:scale(1.08);
 }
 
 .photoStack img:nth-child(3){
-transform:rotate(-2deg);
-top:-15px;
-left:15px;
-z-index:3;
+ transform:rotate(6deg);
 }
 /* ===== NIGHT SKY LAYER ===== */
 #sky{
