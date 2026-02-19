@@ -89,13 +89,6 @@ font-size:30px;
 color:#222;
 font-weight:600;
 }
-.title{
-font-size:34px;
-color:#ff4f8b;
-margin-bottom:15px;
-font-family:'Pacifico',cursive;
-}
-#countdown{font-size:28px;color:#333;}
 
 #tapScreen{
 position:fixed;
@@ -119,7 +112,7 @@ pointer-events:auto;
 #main{
 display:none;
 min-height:100vh;
-padding:40px 20px 80px 20px;
+padding:40px 20px 120px 20px;
 position:relative;
 z-index:3;
 }
@@ -146,6 +139,7 @@ font-size:17px;
 line-height:1.8;
 text-align:left;
 margin-top:20px;
+margin-bottom:120px;
 }
 
 /* candles */
@@ -255,18 +249,18 @@ pointer-events:none;
 <div class="message">
 Happy Birthday, My Tortoise.<br><br>
 
-Today isn't just the day you were born.... it's the day the world was blessed with the most beautiful soul I've ever known. You don't even realize how much light you'bring into my life. The way you smile, the way you care, the way you love it all changed me in
+Today isn't just the day you were born.... it's the day the world was blessed with the most beautiful soul I've ever known. You don't even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
 
-the best way possible.<br><br>
+Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You've seen me at my best and my worst, and still chose to stay. That's something I will never take for granted.<br><br>
 
-Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You've seen me at my best and my worst, and still chose to stay. That's something I will never take for granted.<br><br>On your birthday, I don't just wish you happiness... I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.
+On your birthday, I don't just wish you happiness... I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.<br><br>
 
-No matter where life takes us, I'm always going to be grateful that I get to love you.
+No matter where life takes us, I'm always going to be grateful that I get to love you.<br><br>
 
-Happy Birthday to the girl who feels like my forever - my nanu <br><br>
+Happy Birthday to the girl who feels like my forever - my nanu ♡
 </div>
 
-<div style="display:flex; justify-content:center; align-items:flex-end; gap:20px; margin-top:10px;">
+<div style="display:flex; justify-content:center; align-items:flex-end; gap:20px; margin-top:20px; margin-bottom:120px;">
 
 <div class="candle">
 <div class="flame" onclick="blowOne(this)"></div>
@@ -293,6 +287,7 @@ Happy Birthday to the girl who feels like my forever - my nanu <br><br>
 
 /* ===== SMART COUNTDOWN ===== */
 let previewMode = window.location.search.includes("preview=rohan");
+
 let target = previewMode
 ? new Date().getTime()-2000
 : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
@@ -319,7 +314,13 @@ d+"d "+h+"h "+m+"m "+s+"s";
 
 },1000);
 
-/* STARS */
+/* tap start */
+document.getElementById("tapScreen").onclick=function(){
+this.style.display="none";
+document.getElementById("music").play();
+};
+
+/* stars */
 const canvas=document.getElementById("starsCanvas");
 const ctx=canvas.getContext("2d");
 function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight;}
@@ -340,7 +341,7 @@ requestAnimationFrame(drawStars);
 }
 drawStars();
 
-/* FIRELIES */
+/* fireflies */
 for(let i=0;i<25;i++){
 let f=document.createElement("div");
 f.className="firefly";
@@ -350,44 +351,39 @@ f.style.animationDuration=(6+Math.random()*6)+"s";
 document.body.appendChild(f);
 }
 
-/* BLOW ONE CANDLE */
+/* blow candle one by one */
 function blowOne(el){
 if(el.classList.contains("blown")) return;
 el.classList.add("blown");
 el.style.transition="0.6s";
 el.style.opacity="0";
 el.style.transform="scale(0)";
-if(navigator.vibrate) navigator.vibrate(80);
+navigator.vibrate?.(80);
 }
-/* ===== MOON GLOW ON SCROLL ===== */
+
+/* moon glow */
 let moon = document.querySelector(".moon");
-
 window.addEventListener("scroll", ()=>{
-  let sc = window.scrollY;
-  let glow = Math.min(sc/2,120);
-
-  moon.style.boxShadow =
-  `0 0 ${25+glow}px rgba(255,255,255,0.9),
-   0 0 ${60+glow}px rgba(255,255,255,0.5),
-   0 0 ${120+glow}px rgba(255,255,255,0.25)`;
-});
-  /* ===== SOFT 3D PARALLAX ===== */
-document.addEventListener("mousemove", (e)=>{
-  let x = (window.innerWidth/2 - e.clientX)/40;
-  let y = (window.innerHeight/2 - e.clientY)/40;
-
-  document.querySelector("#main").style.transform =
-  `translate(${x}px, ${y}px)`;
+let sc = window.scrollY;
+let glow = Math.min(sc/2,120);
+moon.style.boxShadow=`0 0 ${25+glow}px rgba(255,255,255,0.9),
+0 0 ${60+glow}px rgba(255,255,255,0.5),
+0 0 ${120+glow}px rgba(255,255,255,0.25)`;
 });
 
-document.addEventListener("touchmove", (e)=>{
-  let touch = e.touches[0];
-  let x = (window.innerWidth/2 - touch.clientX)/40;
-  let y = (window.innerHeight/2 - touch.clientY)/40;
-
-  document.querySelector("#main").style.transform =
-  `translate(${x}px, ${y}px)`;
+/* parallax */
+document.addEventListener("mousemove",(e)=>{
+let x=(window.innerWidth/2 - e.clientX)/40;
+let y=(window.innerHeight/2 - e.clientY)/40;
+document.querySelector("#main").style.transform=`translate(${x}px,${y}px)`;
 });
+document.addEventListener("touchmove",(e)=>{
+let t=e.touches[0];
+let x=(window.innerWidth/2 - t.clientX)/40;
+let y=(window.innerHeight/2 - t.clientY)/40;
+document.querySelector("#main").style.transform=`translate(${x}px,${y}px)`;
+});
+
 </script>
 </body>
 </html>
