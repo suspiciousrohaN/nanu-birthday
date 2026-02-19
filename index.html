@@ -201,18 +201,31 @@ animation:flicker .15s infinite alternate;
 /* fireflies */
 .firefly{
 position:fixed;
-width:6px;height:6px;
-background:#ffd966;
-border-radius:50%;
-box-shadow:0 0 6px #ffd966,0 0 20px rgba(255,255,200,0.8);
-animation:fly linear infinite;
-opacity:.8;
-z-index:2;
-pointer-events:none;
+  width:6px;
+  height:6px;
+  background:#ffd966;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:2;
+
+  box-shadow:
+    0 0 6px #ffd966,
+    0 0 12px #ffea9e,
+    0 0 25px rgba(255,255,200,0.9);
+
+  animation:float linear infinite;
 }
-@keyframes fly{
-from{transform:translateY(100vh);}
-to{transform:translateY(-10vh);}
+
+@keyframes float{
+  0%{
+    transform:translateY(0px) translateX(0px);
+  }
+  50%{
+    transform:translateY(-40px) translateX(20px);
+  }
+  100%{
+    transform:translateY(-80px) translateX(-10px);
+  }
 }
 </style>
 </head>
@@ -331,15 +344,25 @@ moon.style.boxShadow=`0 0 ${25+glow}px rgba(255,255,255,0.9),
 0 0 ${120+glow}px rgba(255,255,255,0.25)`;
 });
 
-/* FIREFLIES */
-for(let i=0;i<25;i++){
-let f=document.createElement("div");
-f.className="firefly";
-f.style.left=Math.random()*100+"vw";
-f.style.animationDuration=(6+Math.random()*6)+"s";
-f.style.opacity=Math.random();
-document.body.appendChild(f);
+/* ===== PREMIUM FIREFLIES ===== */
+function createFireflies(){
+  for(let i=0;i<30;i++){
+    let f=document.createElement("div");
+    f.className="firefly";
+
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+
+    f.style.animationDuration=(8+Math.random()*6)+"s";
+    f.style.animationDelay=(Math.random()*5)+"s";
+
+    f.style.opacity=Math.random();
+
+    document.body.appendChild(f);
+  }
 }
+
+createFireflies();
 </script>
 </body>
 </html>
