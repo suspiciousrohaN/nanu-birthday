@@ -8,11 +8,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+/* ===== NIGHT SKY LAYER ===== */
+#sky{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom,#050510,#0d1025,#161a3d);
+z-index:-2;
+overflow:hidden;
+}
+
+/* canvas stars */
+#starsCanvas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+/* glowing moon */
+.moon{
+position:absolute;
+top:70px;
+right:70px;
+width:90px;
+height:90px;
+border-radius:50%;
+background:radial-gradient(circle at 30% 30%,#fff,#ddd 60%,#bbb);
+box-shadow:
+0 0 25px rgba(255,255,255,0.9),
+0 0 60px rgba(255,255,255,0.5),
+0 0 120px rgba(255,255,255,0.25);
 }
 
 body{
@@ -161,7 +190,10 @@ to{transform:translateY(-110vh);}
 </head>
 
 <body>
-
+<div id="sky">
+<canvas id="starsCanvas"></canvas>
+<div class="moon"></div>
+</div>
 <div class="countdownBox" id="countdownBox">
 <div class="title">Counting down to your day 🐢</div>
 <div id="countdown">Loading...</div>
@@ -243,6 +275,46 @@ heart.style.animationDuration=(3+Math.random()*5)+"s";
 document.body.appendChild(heart);
 }
 };
+  /* ===== CINEMATIC STARFIELD ===== */
+const canvas = document.getElementById("starsCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+let stars = [];
+for(let i=0;i<160;i++){
+stars.push({
+x: Math.random()*canvas.width,
+y: Math.random()*canvas.height,
+r: Math.random()*1.2,
+d: Math.random()*0.5
+});
+}
+
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+
+for(let i=0;i<stars.length;i++){
+let s=stars[i];
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+s.y += s.d;
+
+if(s.y>canvas.height){
+s.y=0;
+s.x=Math.random()*canvas.width;
+}
+}
+requestAnimationFrame(drawStars);
+}
+drawStars();
 </script>
 
 </body>
