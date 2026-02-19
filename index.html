@@ -272,19 +272,19 @@ Happy Birthday to the girl who feels like my forever — my nanu ♡<br><br>
 
   <!-- left candle -->
   <div class="candle">
-    <div class="flame" onclick="blowCandles()"></div>
+    <div class="flame" onclick="blowOne(this)"></div>
   </div>
 
   <!-- realistic cake -->
   <div class="realCake">
     <div class="cakeCandle">
-      <div class="cakeFlame" onclick="blowCandles()"></div>
+      <div class="cakeFlame" onclick="blowOne(this)"></div>
     </div>
   </div>
 
   <!-- right candle -->
   <div class="candle">
-    <div class="flame" onclick="blowCandles()"></div>
+    <div class="flame" onclick="blowOne(this)"></div>
   </div>
 
 </div>
@@ -389,12 +389,13 @@ document.addEventListener("touchmove", (e)=>{
   `translate(${x}px,${y}px)`;
 });
   /* ===== BLOW CANDLES ===== */
-function blowCandles(){
-  document.querySelectorAll(".flame, .cakeFlame").forEach(f=>{
-    f.style.transition="0.6s";
-    f.style.opacity="0";
-    f.style.transform="scale(0)";
-  });
+function blowOne(el){
+  el.style.transition="0.6s";
+  el.style.opacity="0";
+  el.style.transform="scale(0)";
+  
+  navigator.vibrate?.(80);
+  }
 
   navigator.vibrate?.(200);
 }
