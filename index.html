@@ -8,6 +8,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
+  /* ===== SHOOTING STAR ===== */
+.shooting-star{
+position:fixed;
+top:-50px;
+left:-50px;
+width:2px;
+height:2px;
+background:white;
+box-shadow:0 0 6px white,0 0 20px white;
+transform:rotate(45deg);
+opacity:0;
+z-index:1;
+}
+
+.shooting-star::after{
+content:"";
+position:absolute;
+top:0;
+left:-120px;
+width:120px;
+height:2px;
+background:linear-gradient(90deg,white,transparent);
+}
+
+@keyframes shoot{
+0%{opacity:0;transform:translate(0,0) rotate(45deg);}
+10%{opacity:1;}
+100%{opacity:0;transform:translate(600px,600px) rotate(45deg);}
+}
   /* ===== REALISTIC CAKE ===== */
 .realCake{
   position:relative;
@@ -156,6 +185,7 @@ height:100%;
 
 /* glowing moon */
 .moon{
+transition:0.5s;
 position:absolute;
 top:70px;
 right:70px;
@@ -299,6 +329,7 @@ to{transform:translateY(-110vh);}
 </head>
 
 <body>
+<div class="shooting-star" id="star"></div>
 <div class="countdownBox" id="countdownBox">
 <div class="title">Counting down to your day 🐢</div>
 <div id="countdown">Loading...</div>
@@ -443,7 +474,36 @@ s.x=Math.random()*canvas.width;
 requestAnimationFrame(drawStars);
 }
 drawStars();
-</script>
+  // shooting star on scroll
+let star = document.getElementById("star");
+let fired = false;
 
+window.addEventListener("scroll", () => {
+  if (!fired && window.scrollY > 150) {
+    fired = true;
+
+    star.style.top = "120px";
+    star.style.left = "-200px";
+    star.style.opacity = "1";
+
+    star.animate([
+      { transform: "translate(0,0)", opacity: 1 },
+      { transform: "translate(1200px,300px)", opacity: 0 }
+    ], {
+      duration: 1200,
+      easing: "ease-out"
+    });
+  }
+});
+  // shooting star random
+setInterval(()=>{
+let star = document.getElementById("star");
+star.style.top = Math.random()*window.innerHeight/2 + "px";
+star.style.left = Math.random()*window.innerWidth/2 + "px";
+star.style.animation = "none";
+star.offsetHeight;
+star.style.animation = "shoot 1.2s linear";
+},6000);
+</script>
 </body>
 </html>
