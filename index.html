@@ -9,10 +9,46 @@
 
 <style>
   .photoStack{
-position:relative;
-width:220px;
-margin:20px auto;
-height:220px;
+  position:relative;
+  width:220px;
+  height:260px;
+  margin:40px auto 20px auto;
+}
+
+.photoStack img{
+  position:absolute;
+  width:180px;
+  height:240px;
+  object-fit:cover;
+  border-radius:10px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.5);
+  transition:0.4s;
+}
+
+/* back photo */
+.photoStack img:nth-child(1){
+  transform:rotate(-10deg);
+  left:0;
+  top:20px;
+  z-index:1;
+  opacity:0.9;
+}
+
+/* middle */
+.photoStack img:nth-child(2){
+  transform:rotate(8deg);
+  left:40px;
+  top:10px;
+  z-index:2;
+  opacity:0.95;
+}
+
+/* front main */
+.photoStack img:nth-child(3){
+  transform:rotate(-2deg);
+  left:20px;
+  top:0;
+  z-index:3;
 }
 
 .photoStack img{
@@ -78,12 +114,11 @@ box-shadow:
 }
 
 body{
-height:100vh;
-background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background:transparent;
+  color:white;
+  overflow-x:hidden;
 }
 
 /* Countdown Box */
@@ -147,14 +182,11 @@ padding:40px 15px;
 }
 
 .card{
-background:#fffafc;
-padding:25px;
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.15);
-max-width:420px;
-width:100%;
-text-align:center;
-animation:fadeUp 1.5s ease;
+  max-width:500px;
+  margin:120px auto;
+  padding:25px;
+  position:relative;
+  z-index:5;
 }
 
 @keyframes fadeUp{
@@ -178,15 +210,13 @@ border-radius:10px;
 
 /* Message */
 .message{
-background:white;
-padding:18px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.15);
-font-size:15px;
-line-height:1.6;
-text-align:left;
-max-height:300px;
-overflow-y:auto;
+  font-size:17px;
+  line-height:1.8;
+  text-align:left;
+  margin-top:20px;
+  color:white;
+  overflow-y:auto;
+scroll-behavior:smooth;
 }
 
 .message::-webkit-scrollbar{width:4px;}
@@ -232,16 +262,19 @@ to{transform:translateY(-110vh);}
 <div>Tap to open your surprise ✨</div>
 </div>
 
-<div id="main">
-<div class="card">
+<!-- NIGHT SKY BACKGROUND -->
 <div id="sky">
 <canvas id="starsCanvas"></canvas>
 <div class="moon"></div>
 </div>
+
+<div id="main">
+<div class="card">
+
 <div class="photoStack">
-  <img src="photo1.jpg">
-  <img src="photo2.jpg">
-  <img src="photo3.jpg">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
 </div>
 
 <div class="message">
