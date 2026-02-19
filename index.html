@@ -334,7 +334,35 @@ el.style.opacity="0";
 el.style.transform="scale(0)";
 if(navigator.vibrate) navigator.vibrate(80);
 }
+/* ===== MOON GLOW ON SCROLL ===== */
+let moon = document.querySelector(".moon");
 
+window.addEventListener("scroll", ()=>{
+  let sc = window.scrollY;
+  let glow = Math.min(sc/2,120);
+
+  moon.style.boxShadow =
+  `0 0 ${25+glow}px rgba(255,255,255,0.9),
+   0 0 ${60+glow}px rgba(255,255,255,0.5),
+   0 0 ${120+glow}px rgba(255,255,255,0.25)`;
+});
+  /* ===== SOFT 3D PARALLAX ===== */
+document.addEventListener("mousemove", (e)=>{
+  let x = (window.innerWidth/2 - e.clientX)/40;
+  let y = (window.innerHeight/2 - e.clientY)/40;
+
+  document.querySelector("#main").style.transform =
+  `translate(${x}px, ${y}px)`;
+});
+
+document.addEventListener("touchmove", (e)=>{
+  let touch = e.touches[0];
+  let x = (window.innerWidth/2 - touch.clientX)/40;
+  let y = (window.innerHeight/2 - touch.clientY)/40;
+
+  document.querySelector("#main").style.transform =
+  `translate(${x}px, ${y}px)`;
+});
 </script>
 </body>
 </html>
