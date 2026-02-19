@@ -8,7 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
+/* stickers around countdown */
+.sticker{
+position:absolute;
+width:55px;
+height:auto;
+pointer-events:none;
+z-index:5;
+animation:floatSticker 4s ease-in-out infinite;
+}
 
+/* positions */
+.s1{top:-25px; left:-25px;}
+.s2{top:-25px; right:-25px;}
+.s3{bottom:-25px; left:-25px;}
+.s4{bottom:-25px; right:-25px;}
+
+@keyframes floatSticker{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0px);}
+}
 /* ===== COUNTDOWN BACKGROUND ===== */
 #strawberryBg{
 position:fixed;
@@ -247,10 +267,16 @@ display:none;
 <div class="shooting-star"></div>
 
 <div class="countdownBox" id="countdownBox">
-<div class="title">Counting down to your day ✨🫶🏻</div>
-<div id="countdown">Loading...</div>
-</div>
 
+<img src="sticker1.png" class="sticker s1">
+<img src="sticker2.png" class="sticker s2">
+<img src="sticker3.png" class="sticker s3">
+<img src="sticker4.png" class="sticker s4">
+
+<div class="title">Counting down to your day ✨</div>
+<div id="countdown">Loading...</div>
+
+</div>
 <div id="tapScreen">Tap to open your surprise ✨</div>
 
 <div id="sky">
