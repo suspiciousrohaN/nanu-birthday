@@ -1,122 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Nanu ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
-.countdownBox{
-background:white;
-padding:25px 35px;
-border-radius:25px;
-box-shadow:0 10px 40px rgba(255,105,180,0.25);
-text-align:center;
-}
-
-.title{
-font-size:32px;
-color:#ff4f8b;
-margin-bottom:15px;
-font-family:'Pacifico',cursive;
-}
-
-#countdown{
-font-size:26px;
-color:#333;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-margin:0;
-padding:0;
 height:100vh;
 background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
-font-family:'Poppins',sans-serif;
 }
 
-/* COUNTDOWN */
-#countdownScreen{
-position:absolute;
+/* Countdown Box */
+.countdownBox{
+background:white;
+padding:30px 35px;
+border-radius:25px;
+box-shadow:0 10px 40px rgba(255,105,180,0.25);
 text-align:center;
 }
 
-.countTitle{
-font-size:26px;
+.title{
+font-size:34px;
+color:#ff4f8b;
 margin-bottom:15px;
-color:#ff7aa8;
+font-family:'Pacifico',cursive;
 }
 
-#timer{
-font-size:20px;
-}
-
-/* TAP SCREEN */
-#tapScreen{
-position:absolute;
-display:none;
-text-align:center;
-cursor:pointer;
-}
-
-.tapText{
-font-size:22px;
-opacity:0.8;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-0%{opacity:0.4}
-50%{opacity:1}
-100%{opacity:0.4}
-}
-
-/* INTRO GLOW */
-#intro{
-position:absolute;
-opacity:0;
-text-align:center;
-transition:2s;
-}
-
-.glow{
+#countdown{
 font-size:28px;
-color:#ff7aa8;
-text-shadow:0 0 10px #ff7aa8,0 0 25px #ff4d88;
-margin:15px 0;
+color:#333;
 }
 
-/* MAIN */
-#main{
-position:absolute;
-opacity:0;
-transition:2s;
+/* Tap Screen */
+#tapScreen{
+position:fixed;
+top:0;
+left:0;
 width:100%;
-height:100vh;
-overflow-y:auto;
-background:linear-gradient(#ffd6e7,#ffeaf3);
-color:#333;
+height:100%;
+background:black;
 display:flex;
 justify-content:center;
-align-items:flex-start;
-padding-top:40px;
+align-items:center;
+flex-direction:column;
+color:white;
+font-size:24px;
+opacity:0;
+pointer-events:none;
+transition:1s;
 }
 
-.container{
+#tapScreen.show{
+opacity:1;
+pointer-events:auto;
+}
+
+/* Main Reveal */
+#main{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
+display:none;
+justify-content:center;
+align-items:center;
+overflow-y:auto;
+padding:40px 15px;
+}
+
+.card{
+background:#fffafc;
+padding:25px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
 max-width:420px;
-width:90%;
+width:100%;
 text-align:center;
+animation:fadeUp 1.5s ease;
 }
 
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Polaroid */
 .polaroid{
 background:white;
 padding:12px;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
-transform:rotate(-2deg);
-margin-bottom:20px;
+margin-bottom:18px;
 }
 
 .polaroid img{
@@ -124,62 +114,72 @@ width:100%;
 border-radius:10px;
 }
 
+/* Message */
 .message{
 background:white;
-padding:20px;
+padding:18px;
 border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-line-height:1.6;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
 font-size:15px;
+line-height:1.6;
 text-align:left;
+max-height:300px;
+overflow-y:auto;
 }
 
+.message::-webkit-scrollbar{width:4px;}
+.message::-webkit-scrollbar-thumb{
+background:#ff8fb1;
+border-radius:10px;
+}
+
+/* Cake */
 .cake{
-font-size:45px;
-margin:20px 0;
+font-size:55px;
+margin-top:15px;
 animation:glow 1s infinite alternate;
 }
 
 @keyframes glow{
-from{transform:scale(1)}
-to{transform:scale(1.1)}
+from{transform:scale(1);}
+to{transform:scale(1.1);}
+}
+
+/* Floating hearts */
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 6s linear infinite;
+color:#ff6fa5;
+}
+@keyframes float{
+from{transform:translateY(0);}
+to{transform:translateY(-110vh);}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- COUNTDOWN -->
-<div id="countdownScreen">
-<div class="countTitle">Counting down to your day 🐢</div>
-<div id="timer"></div>
+<div class="countdownBox" id="countdownBox">
+<div class="title">Counting down to your day 🐢</div>
+<div id="countdown">Loading...</div>
 </div>
 
-<!-- TAP -->
-<div id="tapScreen" onclick="startSurprise()">
-<div class="tapText">Tap to open your surprise ✨</div>
+<div id="tapScreen">
+<div>Tap to open your surprise ✨</div>
 </div>
 
-<!-- INTRO -->
-<div id="intro">
-<div class="glow">For the most beautiful soul...</div>
-<div class="glow">A little surprise for you 💖</div>
-</div>
-
-<!-- MAIN -->
 <div id="main">
-<div class="container">
+<div class="card">
 
 <div class="polaroid">
 <img src="photo.jpg">
 </div>
 
 <div class="message">
-<b>Happy Birthday, My Tortoise.</b><br><br>
+Happy Birthday, My Tortoise.<br><br>
 
 Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
 
@@ -189,6 +189,8 @@ On your birthday, I don’t just wish you happiness... I promise to be someone w
 
 No matter where life takes us, I’m always going to be grateful that I get to love you.<br><br>
 
+Happy Birthday to the girl who feels like my forever — my nanu ♡<br><br>
+
 <b>Forever yours — Rabbit 🐰</b>
 </div>
 
@@ -197,53 +199,50 @@ No matter where life takes us, I’m always going to be grateful that I get to l
 </div>
 </div>
 
+<audio id="music" src="music.mp3"></audio>
+
 <script>
 let previewMode = window.location.search.includes("preview=1");
 let target = previewMode 
-  ? new Date().getTime() - 1000 
-  : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
-let timerEl = document.getElementById("timer");
+? new Date().getTime()-1000
+: new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
 
-function updateCountdown(){
-let now = new Date().getTime();
-let distance = target - now;
+let timer=setInterval(()=>{
+let now=new Date().getTime();
+let dist=target-now;
 
-if(distance <= 0){
-document.getElementById("countdownScreen").style.display="none";
-document.getElementById("tapScreen").style.display="block";
-clearInterval(interval);
+if(dist<=0){
+clearInterval(timer);
+document.getElementById("countdownBox").style.display="none";
+document.getElementById("tapScreen").classList.add("show");
 return;
 }
 
-let days=Math.floor(distance/(1000*60*60*24));
-let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-let minutes=Math.floor((distance%(1000*60))/1000/60);
-let seconds=Math.floor((distance%(1000*60))/1000);
+let d=Math.floor(dist/(1000*60*60*24));
+let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((dist%(1000*60*60))/(1000*60));
+let s=Math.floor((dist%(1000*60))/1000);
 
-timerEl.innerHTML =
-days+"d "+hours+"h "+minutes+"m "+seconds+"s";
-}
+document.getElementById("countdown").innerHTML=
+d+"d "+h+"h "+m+"m "+s+"s";
 
-let interval=setInterval(updateCountdown,1000);
-updateCountdown();
+},1000);
 
-function startSurprise(){
+document.getElementById("tapScreen").onclick=function(){
 document.getElementById("tapScreen").style.display="none";
+document.getElementById("main").style.display="flex";
+document.body.style.background="#000";
+document.getElementById("music").play();
 
-let music=document.getElementById("music");
-music.play().catch(()=>{});
-
-let intro=document.getElementById("intro");
-intro.style.opacity="1";
-
-setTimeout(()=>{
-intro.style.opacity="0";
-},3000);
-
-setTimeout(()=>{
-document.getElementById("main").style.opacity="1";
-},4500);
+for(let i=0;i<25;i++){
+let heart=document.createElement("div");
+heart.innerHTML="❤";
+heart.className="heart";
+heart.style.left=Math.random()*100+"%";
+heart.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(heart);
 }
+};
 </script>
 
 </body>
