@@ -1,206 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Nanu ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<title>For My Nanu ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
-height:100vh;
-background:#000;
-font-family:'Poppins',sans-serif;
+background:black;
+color:white;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow-y:auto;
-color:white;
-transition:background 1.5s ease;
+height:100vh;
+overflow:hidden;
+transition:1.5s;
 }
 
-/* Tap Screen */
+/* COUNTDOWN */
+#countdownScreen{
+position:absolute;
+text-align:center;
+}
+
+.countTitle{
+font-size:26px;
+margin-bottom:15px;
+color:#ff7aa8;
+}
+
+#timer{
+font-size:20px;
+}
+
+/* TAP SCREEN */
 #tapScreen{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:20;
+position:absolute;
+display:none;
+text-align:center;
 cursor:pointer;
 }
 
 .tapText{
-font-family:'Playfair Display',serif;
-font-size:26px;
+font-size:22px;
 opacity:0.8;
 animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
-0%,100%{opacity:0.3;}
-50%{opacity:1;}
+0%{opacity:0.4}
+50%{opacity:1}
+100%{opacity:0.4}
 }
 
-/* Main */
-#main{
-display:none;
+/* INTRO GLOW */
+#intro{
+position:absolute;
+opacity:0;
 text-align:center;
-padding:20px;
-max-width:420px;
+transition:2s;
 }
 
-/* Countdown */
-.countTitle{
-font-family:'Playfair Display',serif;
-font-size:32px;
-color:#f4b6c2;
-margin-bottom:20px;
+.glow{
+font-size:28px;
+color:#ff7aa8;
+text-shadow:0 0 10px #ff7aa8,0 0 25px #ff4d88;
+margin:15px 0;
 }
 
-.countBox{
-background:white;
+/* MAIN */
+#main{
+position:absolute;
+opacity:0;
+transition:2s;
+width:100%;
+height:100vh;
+overflow-y:auto;
+background:linear-gradient(#ffd6e7,#ffeaf3);
 color:#333;
-padding:20px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-font-size:20px;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+padding-top:40px;
 }
 
-/* Polaroid */
+.container{
+max-width:420px;
+width:90%;
+text-align:center;
+}
+
 .polaroid{
 background:white;
 padding:12px;
-border-radius:10px;
-box-shadow:0 15px 30px rgba(0,0,0,0.2);
-width:240px;
-margin:20px auto;
-transform:rotate(-3deg);
-animation:fadeIn 2s ease forwards;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transform:rotate(-2deg);
+margin-bottom:20px;
 }
 
 .polaroid img{
 width:100%;
-border-radius:6px;
+border-radius:10px;
 }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px) rotate(-3deg);}
-to{opacity:1;transform:translateY(0) rotate(-3deg);}
-}
-
-/* Message */
-.messageBox{
+.message{
 background:white;
-color:#333;
 padding:20px;
 border-radius:15px;
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
-font-size:15px;
 line-height:1.6;
-margin-top:15px;
+font-size:15px;
 text-align:left;
-max-height:300px;
-overflow-y:auto;
-scroll-behavior:smooth;
-}
-.messageBox::-webkit-scrollbar{
- width:4px;
 }
 
-.messageBox::-webkit-scrollbar-thumb{
- background:#f4b6c2;
- border-radius:10px;
-}
-/* Cake */
 .cake{
-font-size:50px;
-margin-top:15px;
+font-size:45px;
+margin:20px 0;
 animation:glow 1s infinite alternate;
 }
 
 @keyframes glow{
-from{transform:scale(1);}
-to{transform:scale(1.1);}
-}
-
-/* Hearts */
-.heart{
-position:fixed;
-bottom:-20px;
-font-size:18px;
-opacity:0.7;
-animation:floatUp linear forwards;
-}
-
-@keyframes floatUp{
-0%{transform:translateY(0);opacity:0.7;}
-100%{transform:translateY(-110vh);opacity:0;}
-}
-
-/* Dreamy background */
-.dreamy{
-background:linear-gradient(135deg,#fff1f5,#ffe4ec);
+from{transform:scale(1)}
+to{transform:scale(1.1)}
 }
 </style>
 </head>
 
 <body>
 
-<div id="tapScreen">
-<div class="tapText">tap to open your surprise…</div>
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- COUNTDOWN -->
+<div id="countdownScreen">
+<div class="countTitle">Counting down to your day 🐢</div>
+<div id="timer"></div>
 </div>
 
-<audio id="music" src="music.mp3" loop></audio>
+<!-- TAP -->
+<div id="tapScreen" onclick="startSurprise()">
+<div class="tapText">Tap to open your surprise ✨</div>
+</div>
 
-<div id="main"></div>
+<!-- INTRO -->
+<div id="intro">
+<div class="glow">For the most beautiful soul...</div>
+<div class="glow">A little surprise for you 💖</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+<div class="container">
+
+<div class="polaroid">
+<img src="photo.jpg">
+</div>
+
+<div class="message">
+<b>Happy Birthday, My Tortoise.</b><br><br>
+
+Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
+
+Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You’ve seen me at my best and my worst, and still chose to stay. That’s something I will never take for granted.<br><br>
+
+On your birthday, I don’t just wish you happiness... I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.<br><br>
+
+No matter where life takes us, I’m always going to be grateful that I get to love you.<br><br>
+
+<b>Forever yours — Rabbit 🐰</b>
+</div>
+
+<div class="cake">🎂</div>
+
+</div>
+</div>
 
 <script>
+let previewMode = window.location.search.includes("preview=1");
+let target = previewMode 
+  ? new Date().getTime() - 1000 
+  : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
+let timerEl = document.getElementById("timer");
 
-let preview = true;
-let target = preview ? new Date().getTime() - 1000 : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
+function updateCountdown(){
+let now = new Date().getTime();
+let distance = target - now;
 
-/* Tap Start */
-document.getElementById("tapScreen").onclick = function(){
-document.getElementById("tapScreen").style.display="none";
-let music=document.getElementById("music");
-music.volume=0.6;
-music.play().catch(()=>{});
-document.body.classList.add("dreamy");
-document.getElementById("main").style.display="block";
-checkTime();
-};
-
-/* Time Check */
-function checkTime(){
-let now=new Date().getTime();
-if(now>=target){
-showBirthday();
-}else{
-startCountdown();
-}
-}
-
-/* Countdown */
-function startCountdown(){
-document.getElementById("main").innerHTML=`
-<div class="countTitle">Counting down to your day 🐢</div>
-<div class="countBox" id="countdown"></div>
-`;
-
-let timer=setInterval(()=>{
-let now=new Date().getTime();
-let distance=target-now;
-
-if(distance<=0){
-clearInterval(timer);
-showBirthday();
+if(distance <= 0){
+document.getElementById("countdownScreen").style.display="none";
+document.getElementById("tapScreen").style.display="block";
+clearInterval(interval);
 return;
 }
 
@@ -209,64 +201,30 @@ let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
 let minutes=Math.floor((distance%(1000*60))/1000/60);
 let seconds=Math.floor((distance%(1000*60))/1000);
 
-document.getElementById("countdown").innerHTML=
+timerEl.innerHTML =
 days+"d "+hours+"h "+minutes+"m "+seconds+"s";
-
-},1000);
 }
 
-/* Birthday Scene */
-function showBirthday(){
+let interval=setInterval(updateCountdown,1000);
+updateCountdown();
 
-document.getElementById("main").innerHTML=`
+function startSurprise(){
+document.getElementById("tapScreen").style.display="none";
 
-<div class="countTitle">Happy Birthday, My Tortoise 🐢</div>
+let music=document.getElementById("music");
+music.play().catch(()=>{});
 
-<div class="polaroid">
-<img src="photo.jpg">
-</div>
+let intro=document.getElementById("intro");
+intro.style.opacity="1";
 
-<div class="messageBox">
-<span id="typedMsg"></span>
-</div>
+setTimeout(()=>{
+intro.style.opacity="0";
+},3000);
 
-<div class="cake">🎂</div>
-`;
-
-let text = `Happy Birthday, My Tortoise.
-
-Today isn’t just the day you were born.... it’s the day the world was blessed with the most beautiful soul I’ve ever known. You don’t even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.
-
-Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You’ve seen me at my best and my worst, and still chose to stay. That’s something I will never take for granted.
-
-On your birthday, I don’t just wish you happiness...I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.
-
-No matter where life takes us, I’m always going to be grateful that I get to love you.
-
-Forever yours — Rabbit 🐰`;
-
-let i=0;
-function type(){
-if(i<text.length){
-document.getElementById("typedMsg").innerHTML += text.charAt(i);
-i++;
-setTimeout(type,35);
+setTimeout(()=>{
+document.getElementById("main").style.opacity="1";
+},4500);
 }
-}
-type();
-}
-
-/* Floating hearts */
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💗";
-h.style.left=Math.random()*100+"vw";
-h.style.animationDuration=(4+Math.random()*4)+"s";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),7000);
-},600);
-
 </script>
 
 </body>
