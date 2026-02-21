@@ -4,367 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Nanu ❤️</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
-
 <style>
-
-/* ===== BACKGROUND ===== */
-#strawberryBg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:0;
-background:url("bg.jpg") center/cover no-repeat;
-filter:brightness(0.9) saturate(1.1);
+body{margin:0;font-family:Poppins;background:black;color:white;overflow:hidden;}
+#countdownPage{
+position:fixed;inset:0;background:url('bg.jpg') center/cover no-repeat;
+display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;
 }
-
-body{
-margin:0;
-background:black;
-font-family:'Poppins',sans-serif;
-color:white;
-overflow-x:hidden;
-}
-
-/* shooting stars */
-.shooting-star{
-position:fixed;
-width:3px;height:3px;
-background:white;border-radius:50%;
-box-shadow:0 0 8px white,0 0 20px white;
-top:-50px;left:-50px;
-opacity:0;
-animation:shooting 5s linear infinite;
-z-index:2;
-}
-.shooting-star:nth-child(1){animation-delay:0s;}
-.shooting-star:nth-child(2){animation-delay:2s;}
-.shooting-star:nth-child(3){animation-delay:4s;}
-
-@keyframes shooting{
-0%{transform:translate(-200px,-200px);opacity:0;}
-10%{opacity:1;}
-100%{transform:translate(1200px,700px);opacity:0;}
-}
-
-/* sky */
-#sky{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-z-index:1;
-overflow:hidden;
-}
-
-#starsCanvas{
-position:absolute;
-top:0;left:0;
-width:100%;height:100%;
-}
-
-.moon{
-position:absolute;
-top:70px;right:70px;
-width:90px;height:90px;
-border-radius:50%;
-background:radial-gradient(circle at 30% 30%,#fff,#ddd 60%,#bbb);
-box-shadow:0 0 25px rgba(255,255,255,0.9),
-0 0 60px rgba(255,255,255,0.5),
-0 0 120px rgba(255,255,255,0.25);
-transition:.5s;
-}
-
-/* countdown */
-.countdownBox{
-backdrop-filter:blur(6px);
-padding:35px 40px;
-border-radius:28px;
-text-align:center;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-z-index:9999;
-}
-
-.title{
-font-size:32px;
-color:white;
-margin-bottom:15px;
-}
-
-#countdown{
-font-size:28px;
-color:white;
-font-weight:600;
-}
-
-#tapScreen{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:24px;
-opacity:0;
-pointer-events:none;
-transition:1s;
-z-index:10;
-}
-#tapScreen.show{
-opacity:1;
-pointer-events:auto;
-}
-
-#main{
-display:none;
-min-height:100vh;
-padding:40px 20px 120px 20px;
-position:relative;
-z-index:3;
-}
-
-/* message */
-.message{
-font-size:17px;
-line-height:1.8;
-text-align:left;
-margin-bottom:100px;
-}
-
-/* candles */
-.candle{
-width:22px;height:70px;
-background:linear-gradient(#fff,#f1e6d2);
-border-radius:6px;
-position:relative;
-box-shadow:0 0 20px rgba(255,220,150,0.4);
-}
-.flame{
-position:absolute;
-top:-28px;left:50%;
-transform:translateX(-50%);
-width:16px;height:26px;
-background:radial-gradient(circle,#fff6b0,#ff5a00);
-border-radius:50%;
-animation:flicker .15s infinite alternate;
-box-shadow:0 0 20px orange,0 0 40px rgba(255,120,20,0.5);
-cursor:pointer;
-}
-@keyframes flicker{
-0%{transform:translateX(-50%) scaleY(1);}
-100%{transform:translateX(-50%) scaleY(1.15);}
-}
-
-/* cake */
-.realCake{
-position:relative;
-width:90px;height:60px;
-background:linear-gradient(#ffb6c1,#ff69b4);
-border-radius:12px;
-box-shadow:0 0 25px rgba(255,182,193,0.6);
-}
-.realCake:before{
-content:"";
-position:absolute;
-top:-12px;left:0;
-width:100%;height:20px;
-background:linear-gradient(#fff,#ffe4e1);
-border-radius:12px;
-}
-.cakeCandle{
-position:absolute;
-top:-35px;left:50%;
-transform:translateX(-50%);
-width:8px;height:25px;background:#fff;border-radius:3px;
-}
-.cakeFlame{
-position:absolute;
-top:-18px;left:50%;
-transform:translateX(-50%);
-width:10px;height:18px;
-background:radial-gradient(circle,#ffd54d,#ff8c00);
-border-radius:50%;
-box-shadow:0 0 15px orange;
-animation:flicker .15s infinite alternate;
-cursor:pointer;
-}
-
-/* gift */
-.giftBox{
-width:75px;height:75px;
-background:linear-gradient(#ff4d8d,#ff2e7a);
-border-radius:12px;
-position:relative;
-box-shadow:0 0 25px rgba(255,100,150,0.5);
-}
-.giftLid{
-position:absolute;
-top:-12px;
-width:100%;height:20px;
-background:linear-gradient(#ff6aa3,#ff3f8f);
-border-radius:10px;
-}
-.giftRibbonV{
-position:absolute;
-width:12px;height:100%;
-background:white;
-left:50%;transform:translateX(-50%);
-}
-.giftRibbonH{
-position:absolute;
-height:12px;width:100%;
-background:white;
-top:30%;
-}
-
-/* fireflies */
-.firefly{
-position:fixed;
-width:6px;height:6px;
-background:#ffd966;
-border-radius:50%;
-box-shadow:0 0 6px #ffd966,0 0 20px rgba(255,255,200,0.8);
-animation:float linear infinite;
-z-index:2;
-pointer-events:none;
-}
-@keyframes float{
-0%{transform:translateY(0px) translateX(0px);}
-50%{transform:translateY(-40px) translateX(20px);}
-100%{transform:translateY(-80px) translateX(-10px);}
-}
-
+.title{font-size:32px;color:white;margin-bottom:10px;}
+#countdown{font-size:28px;color:white;}
+#tap{position:fixed;inset:0;background:black;display:flex;align-items:center;justify-content:center;
+opacity:0;pointer-events:none;transition:.6s;font-size:24px;}
+#tap.show{opacity:1;pointer-events:auto;}
+#main{display:none;min-height:100vh;background:linear-gradient(#050510,#0a0f2c);padding:40px;text-align:center;}
+.photoStack{display:flex;gap:12px;justify-content:center;margin:30px 0;}
+.photoStack img{width:110px;height:160px;border-radius:14px;object-fit:cover;}
+.message{max-width:420px;margin:auto;line-height:1.7;text-align:left;}
+.row{display:flex;gap:18px;justify-content:center;margin-top:30px;}
+.candle{width:20px;height:60px;background:#fff;border-radius:6px;position:relative;}
+.flame{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:14px;height:22px;
+background:orange;border-radius:50%;box-shadow:0 0 15px orange;cursor:pointer;}
+.realCake{width:80px;height:55px;background:pink;border-radius:10px;position:relative;}
+.gift{width:70px;height:70px;background:#ff4d8d;border-radius:10px;position:relative;cursor:pointer;}
 </style>
 </head>
-
 <body>
 
-<div id="strawberryBg"></div>
-<div class="shooting-star"></div>
-<div class="shooting-star"></div>
-<div class="shooting-star"></div>
-
-<div class="countdownBox" id="countdownBox">
+<div id="countdownPage">
 <div class="title">Counting down to your day ✨</div>
 <div id="countdown">Loading...</div>
 </div>
 
-<div id="tapScreen">Tap to open your surprise ✨</div>
-
-<div id="sky">
-<canvas id="starsCanvas"></canvas>
-<div class="moon"></div>
-</div>
+<div id="tap">Tap to open ✨</div>
 
 <div id="main">
+<div class="photoStack">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</div>
 
 <div class="message">
-Happy Birthday, My Tortoise.<br><br>
-Today isn't just the day you were born... it's the day the world was blessed with the most beautiful soul I've ever known.<br><br>
-You've seen me at my best and my worst, and still chose to stay.<br><br>
-No matter where life takes us, I'm always going to be grateful that I get to love you.<br><br>
-Happy Birthday to the girl who feels like my forever - my nanu ♡
+Happy Birthday, my nanu ❤️<br><br>
+You are my favorite person, my peace, my happiness.<br><br>
+No matter what happens in life, I’m always grateful that I get to love you.<br><br>
+Forever yours — Rabbit 🐰
 </div>
 
-<div style="display:flex; justify-content:center; align-items:flex-end; gap:22px; margin-top:20px; margin-bottom:120px;">
-
-<div class="candle">
-<div class="flame" onclick="blowOne(this)"></div>
+<div class="row">
+<div class="candle"><div class="flame" onclick="blow(this)"></div></div>
+<div class="realCake"></div>
+<div class="candle"><div class="flame" onclick="blow(this)"></div></div>
+<div class="gift" onclick="burst()"></div>
 </div>
-
-<div class="realCake">
-<div class="cakeCandle">
-<div class="cakeFlame" onclick="blowOne(this)"></div>
-</div>
-</div>
-
-<div class="candle">
-<div class="flame" onclick="blowOne(this)"></div>
-</div>
-
-<div class="giftBox">
-<div class="giftLid"></div>
-<div class="giftRibbonV"></div>
-<div class="giftRibbonH"></div>
-</div>
-
-</div>
-
 </div>
 
 <audio id="music" src="music.mp3"></audio>
 
 <script>
+let preview = location.search.includes("preview");
+let target = preview ? Date.now()-1000 : new Date("Feb 22, 2026 00:00:00").getTime();
 
-/* countdown */
-let previewMode = window.location.search.includes("preview=rohan");
-
-let target = previewMode
-? new Date().getTime()-2000
-: new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
-
-let timer = setInterval(()=>{
-let now = new Date().getTime();
-let dist = target - now;
+let t = setInterval(()=>{
+let now = Date.now();
+let dist = target-now;
 
 if(dist<=0){
-clearInterval(timer);
-document.getElementById("countdownBox").style.display="none";
-document.getElementById("main").style.display="block";
-document.getElementById("tapScreen").classList.add("show");
+clearInterval(t);
+document.getElementById("countdownPage").style.display="none";
+document.getElementById("tap").classList.add("show");
 return;
 }
-
-let d=Math.floor(dist/(1000*60*60*24));
-let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((dist%(1000*60*60))/(1000*60));
-let s=Math.floor((dist%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML =
-d+"d "+h+"h "+m+"m "+s+"s";
-
+let s=Math.floor(dist/1000)%60;
+let m=Math.floor(dist/1000/60)%60;
+let h=Math.floor(dist/1000/60/60)%24;
+let d=Math.floor(dist/1000/60/60/24);
+countdown.innerHTML=d+"d "+h+"h "+m+"m "+s+"s";
 },1000);
 
-document.getElementById("tapScreen").onclick=function(){
-this.style.display="none";
-document.getElementById("music").play();
+tap.onclick=()=>{
+tap.style.display="none";
+main.style.display="block";
+music.play();
 };
 
-function blowOne(el){
-if(el.classList.contains("blown")) return;
-el.classList.add("blown");
-el.style.opacity="0";
-el.style.transform="scale(0)";
-}
+function blow(el){el.style.opacity=0;}
 
-/* stars */
-const canvas=document.getElementById("starsCanvas");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-
-let stars=[];
-for(let i=0;i<150;i++){
-stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2});
+function burst(){
+for(let i=0;i<20;i++){
+let h=document.createElement("div");
+h.innerHTML="💖";
+h.style.position="fixed";
+h.style.left=Math.random()*100+"vw";
+h.style.top="80vh";
+h.style.fontSize="22px";
+document.body.appendChild(h);
+h.animate([{transform:"translateY(0)"},{transform:"translateY(-300px)",opacity:0}],{duration:1500});
+setTimeout(()=>h.remove(),1500);
 }
-function drawStars(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
-for(let s of stars){
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
 }
-requestAnimationFrame(drawStars);
-}
-drawStars();
-
 </script>
+
 </body>
 </html>
