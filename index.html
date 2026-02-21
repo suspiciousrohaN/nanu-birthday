@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,39 +6,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Nanu ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Poppins;background:black;color:white;overflow:hidden;}
+body{margin:0;font-family:Poppins;background:black;color:white;overflow:hidden}
+
+/* COUNTDOWN */
 #countdownPage{
-position:fixed;inset:0;background:url('bg.jpg') center/cover no-repeat;
-display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;
+position:fixed;inset:0;
+background:url('bg.jpg') center/cover no-repeat;
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+text-align:center;
 }
-.title{font-size:32px;color:white;margin-bottom:10px;}
-#countdown{font-size:28px;color:white;}
-#tap{position:fixed;inset:0;background:black;display:flex;align-items:center;justify-content:center;
-opacity:0;pointer-events:none;transition:.6s;font-size:24px;}
-#tap.show{opacity:1;pointer-events:auto;}
-#main{display:none;min-height:100vh;background:linear-gradient(#050510,#0a0f2c);padding:40px;text-align:center;}
-.photoStack{display:flex;gap:12px;justify-content:center;margin:30px 0;}
-.photoStack img{width:110px;height:160px;border-radius:14px;object-fit:cover;}
-.message{max-width:420px;margin:auto;line-height:1.7;text-align:left;}
-.row{display:flex;gap:18px;justify-content:center;margin-top:30px;}
-.candle{width:20px;height:60px;background:#fff;border-radius:6px;position:relative;}
-.flame{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:14px;height:22px;
-background:orange;border-radius:50%;box-shadow:0 0 15px orange;cursor:pointer;}
-.realCake{width:80px;height:55px;background:pink;border-radius:10px;position:relative;}
-.gift{width:70px;height:70px;background:#ff4d8d;border-radius:10px;position:relative;cursor:pointer;}
+.title{font-size:32px;color:white;margin-bottom:10px}
+#countdown{font-size:30px;color:white}
+
+/* stickers */
+.sticker{
+position:absolute;width:70px;pointer-events:none;
+animation:float 4s ease-in-out infinite;
+}
+.s1{top:15%;left:15%}
+.s2{top:15%;right:15%}
+.s3{bottom:15%;left:18%}
+.s4{bottom:15%;right:18%}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+/* tap */
+#tap{
+position:fixed;inset:0;background:black;
+display:flex;align-items:center;justify-content:center;
+font-size:24px;opacity:0;pointer-events:none;transition:1s;
+}
+#tap.show{opacity:1;pointer-events:auto}
+
+/* main */
+#main{
+display:none;min-height:100vh;padding:40px;text-align:center;
+background:linear-gradient(#050510,#0a0f2c);
+overflow:auto;
+}
+
+/* stars */
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+.moon{
+position:fixed;top:60px;right:60px;width:90px;height:90px;border-radius:50%;
+background:radial-gradient(circle,#fff,#ddd);
+box-shadow:0 0 30px white,0 0 80px rgba(255,255,255,0.5);
+z-index:0;
+}
+
+/* collage */
+.photoStack{display:flex;gap:14px;justify-content:center;margin:30px 0;z-index:2;position:relative}
+.photoStack img{width:110px;height:160px;border-radius:14px;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.photoStack img:nth-child(1){transform:rotate(-6deg)}
+.photoStack img:nth-child(2){transform:scale(1.08)}
+.photoStack img:nth-child(3){transform:rotate(6deg)}
+
+.message{max-width:420px;margin:auto;line-height:1.7;text-align:left;z-index:2;position:relative}
+
+/* cake row */
+.row{display:flex;gap:20px;justify-content:center;margin-top:30px;z-index:2;position:relative}
+.candle{width:20px;height:60px;background:#fff;border-radius:6px;position:relative}
+.flame{
+position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+width:14px;height:22px;background:orange;border-radius:50%;
+box-shadow:0 0 20px orange,0 0 40px orange;
+cursor:pointer;animation:flicker .2s infinite alternate;
+}
+@keyframes flicker{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.1)}}
+
+.cake{width:85px;height:55px;background:pink;border-radius:10px;box-shadow:0 0 25px pink}
+
+.gift{
+width:75px;height:75px;background:#ff4d8d;border-radius:12px;
+box-shadow:0 0 25px rgba(255,80,150,.7);
+position:relative;cursor:pointer;
+}
+.gift:before{content:'';position:absolute;width:100%;height:14px;background:#ff77aa;top:-10px;border-radius:8px}
+.ribbonV{position:absolute;width:14px;height:100%;background:white;left:50%;transform:translateX(-50%)}
+.ribbonH{position:absolute;height:14px;width:100%;background:white;top:35%}
+
+/* hearts */
+.heart{position:fixed;font-size:20px;pointer-events:none;animation:floatUp 2s linear forwards}
+@keyframes floatUp{from{transform:translateY(0);opacity:1}to{transform:translateY(-250px);opacity:0}}
+
+.firefly{position:fixed;width:6px;height:6px;background:#ffd966;border-radius:50%;
+box-shadow:0 0 8px #ffd966,0 0 20px #fff2a8;animation:fly linear infinite;pointer-events:none;z-index:1}
+@keyframes fly{0%{transform:translateY(100vh)}100%{transform:translateY(-10vh)}}
 </style>
 </head>
+
 <body>
 
 <div id="countdownPage">
+<img src="sticker1.png" class="sticker s1">
+<img src="sticker2.png" class="sticker s2">
+<img src="sticker3.png" class="sticker s3">
+<img src="sticker4.png" class="sticker s4">
+
 <div class="title">Counting down to your day ✨</div>
 <div id="countdown">Loading...</div>
 </div>
 
-<div id="tap">Tap to open ✨</div>
+<div id="tap">Tap to open your surprise ✨</div>
 
 <div id="main">
+<canvas id="stars"></canvas>
+<div class="moon"></div>
+
 <div class="photoStack">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
@@ -45,17 +126,20 @@ background:orange;border-radius:50%;box-shadow:0 0 15px orange;cursor:pointer;}
 </div>
 
 <div class="message">
-Happy Birthday, my nanu ❤️<br><br>
-You are my favorite person, my peace, my happiness.<br><br>
-No matter what happens in life, I’m always grateful that I get to love you.<br><br>
+Happy Birthday my nanu ❤️<br><br>
+You are my peace, my happiness, my home.<br><br>
+No matter where life takes us, I'm always grateful I get to love you.<br><br>
 Forever yours — Rabbit 🐰
 </div>
 
 <div class="row">
 <div class="candle"><div class="flame" onclick="blow(this)"></div></div>
-<div class="realCake"></div>
+<div class="cake"></div>
 <div class="candle"><div class="flame" onclick="blow(this)"></div></div>
-<div class="gift" onclick="burst()"></div>
+<div class="gift" onclick="burst()">
+<div class="ribbonV"></div>
+<div class="ribbonH"></div>
+</div>
 </div>
 </div>
 
@@ -65,14 +149,14 @@ Forever yours — Rabbit 🐰
 let preview = location.search.includes("preview");
 let target = preview ? Date.now()-1000 : new Date("Feb 22, 2026 00:00:00").getTime();
 
-let t = setInterval(()=>{
-let now = Date.now();
-let dist = target-now;
+let timer=setInterval(()=>{
+let now=Date.now();
+let dist=target-now;
 
 if(dist<=0){
-clearInterval(t);
-document.getElementById("countdownPage").style.display="none";
-document.getElementById("tap").classList.add("show");
+clearInterval(timer);
+countdownPage.style.display="none";
+tap.classList.add("show");
 return;
 }
 let s=Math.floor(dist/1000)%60;
@@ -86,21 +170,50 @@ tap.onclick=()=>{
 tap.style.display="none";
 main.style.display="block";
 music.play();
+startStars();
+createFireflies();
 };
 
 function blow(el){el.style.opacity=0;}
 
 function burst(){
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
 let h=document.createElement("div");
+h.className="heart";
 h.innerHTML="💖";
-h.style.position="fixed";
 h.style.left=Math.random()*100+"vw";
-h.style.top="80vh";
-h.style.fontSize="22px";
+h.style.bottom="0";
 document.body.appendChild(h);
-h.animate([{transform:"translateY(0)"},{transform:"translateY(-300px)",opacity:0}],{duration:1500});
-setTimeout(()=>h.remove(),1500);
+setTimeout(()=>h.remove(),2000);
+}
+}
+
+function startStars(){
+const c=document.getElementById("stars");
+const ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let stars=[];
+for(let i=0;i<160;i++){
+stars.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.5});
+}
+function draw(){
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
+}
+
+function createFireflies(){
+for(let i=0;i<20;i++){
+let f=document.createElement("div");
+f.className="firefly";
+f.style.left=Math.random()*100+"vw";
+f.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(f);
 }
 }
 </script>
