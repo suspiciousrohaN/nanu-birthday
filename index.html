@@ -8,83 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-  /* ===== REALISTIC GIFT ===== */
-.giftBox{
-position:relative;
-width:80px;
-height:70px;
-background:linear-gradient(145deg,#ff5ca8,#ff2e7a);
-border-radius:8px;
-box-shadow:
-0 8px 25px rgba(255,60,150,0.4),
-inset 0 3px 8px rgba(255,255,255,0.4);
-}
 
-.giftLid{
-position:absolute;
-top:-18px;
-left:0;
-width:100%;
-height:25px;
-background:linear-gradient(145deg,#ff7ec5,#ff3b92);
-border-radius:8px 8px 4px 4px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* vertical ribbon */
-.giftRibbonV{
-position:absolute;
-top:0;
-left:50%;
-transform:translateX(-50%);
-width:16px;
-height:100%;
-background:#fff;
-opacity:0.9;
-}
-
-/* horizontal ribbon */
-.giftRibbonH{
-position:absolute;
-top:28px;
-left:0;
-width:100%;
-height:16px;
-background:#fff;
-opacity:0.9;
-}
-
-/* subtle glow */
-.giftBox{
-animation:giftGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes giftGlow{
-from{box-shadow:0 8px 25px rgba(255,60,150,0.4);}
-to{box-shadow:0 8px 35px rgba(255,60,150,0.7);}
-}
-/* stickers around countdown */
-.sticker{
-position:absolute;
-width:55px;
-height:auto;
-pointer-events:none;
-z-index:5;
-animation:floatSticker 4s ease-in-out infinite;
-}
-
-/* positions */
-.s1{top:-25px; left:-25px;}
-.s2{top:-25px; right:-25px;}
-.s3{bottom:-25px; left:-25px;}
-.s4{bottom:-25px; right:-25px;}
-
-@keyframes floatSticker{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-8px);}
-100%{transform:translateY(0px);}
-}
-/* ===== COUNTDOWN BACKGROUND ===== */
+/* ===== BACKGROUND ===== */
 #strawberryBg{
 position:fixed;
 top:0;
@@ -93,10 +18,8 @@ width:100%;
 height:100%;
 z-index:0;
 background:url("bg.jpg") center/cover no-repeat;
+filter:brightness(0.9) saturate(1.1);
 }
-
-/* hide night sky initially */
-#sky{display:none;}
 
 body{
 margin:0;
@@ -106,7 +29,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* shooting stars (only after unlock) */
+/* shooting stars */
 .shooting-star{
 position:fixed;
 width:3px;height:3px;
@@ -116,7 +39,6 @@ top:-50px;left:-50px;
 opacity:0;
 animation:shooting 5s linear infinite;
 z-index:2;
-display:none;
 }
 .shooting-star:nth-child(1){animation-delay:0s;}
 .shooting-star:nth-child(2){animation-delay:2s;}
@@ -133,7 +55,6 @@ display:none;
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
-background:linear-gradient(to bottom,#050510,#0a0f2c);
 z-index:1;
 overflow:hidden;
 }
@@ -150,13 +71,15 @@ top:70px;right:70px;
 width:90px;height:90px;
 border-radius:50%;
 background:radial-gradient(circle at 30% 30%,#fff,#ddd 60%,#bbb);
-box-shadow:0 0 25px rgba(255,255,255,0.9),0 0 60px rgba(255,255,255,0.5),0 0 120px rgba(255,255,255,0.25);
+box-shadow:0 0 25px rgba(255,255,255,0.9),
+0 0 60px rgba(255,255,255,0.5),
+0 0 120px rgba(255,255,255,0.25);
 transition:.5s;
 }
 
 /* countdown */
 .countdownBox{
-background:transparent;
+backdrop-filter:blur(6px);
 padding:35px 40px;
 border-radius:28px;
 text-align:center;
@@ -168,18 +91,15 @@ z-index:9999;
 }
 
 .title{
-font-size:28px;
+font-size:32px;
 color:white;
 margin-bottom:15px;
-font-family:'Poppins',sans-serif;
-font-weight:500;
-letter-spacing:0.5px;
 }
 
 #countdown{
 font-size:28px;
 color:white;
-font-weight:500;
+font-weight:600;
 }
 
 #tapScreen{
@@ -208,30 +128,13 @@ padding:40px 20px 120px 20px;
 position:relative;
 z-index:3;
 }
-.card{max-width:420px;margin:auto;text-align:center;}
 
-.photoStack{
-display:flex;
-justify-content:center;
-gap:12px;
-margin:40px auto;
-}
-.photoStack img{
-width:95px;height:140px;
-object-fit:cover;
-border-radius:14px;
-box-shadow:0 8px 25px rgba(0,0,0,0.5);
-}
-.photoStack img:nth-child(1){transform:rotate(-6deg);}
-.photoStack img:nth-child(2){transform:scale(1.08);}
-.photoStack img:nth-child(3){transform:rotate(6deg);}
-
+/* message */
 .message{
 font-size:17px;
 line-height:1.8;
 text-align:left;
-margin-top:20px;
-margin-bottom:120px;
+margin-bottom:100px;
 }
 
 /* candles */
@@ -292,6 +195,34 @@ animation:flicker .15s infinite alternate;
 cursor:pointer;
 }
 
+/* gift */
+.giftBox{
+width:75px;height:75px;
+background:linear-gradient(#ff4d8d,#ff2e7a);
+border-radius:12px;
+position:relative;
+box-shadow:0 0 25px rgba(255,100,150,0.5);
+}
+.giftLid{
+position:absolute;
+top:-12px;
+width:100%;height:20px;
+background:linear-gradient(#ff6aa3,#ff3f8f);
+border-radius:10px;
+}
+.giftRibbonV{
+position:absolute;
+width:12px;height:100%;
+background:white;
+left:50%;transform:translateX(-50%);
+}
+.giftRibbonH{
+position:absolute;
+height:12px;width:100%;
+background:white;
+top:30%;
+}
+
 /* fireflies */
 .firefly{
 position:fixed;
@@ -302,7 +233,6 @@ box-shadow:0 0 6px #ffd966,0 0 20px rgba(255,255,200,0.8);
 animation:float linear infinite;
 z-index:2;
 pointer-events:none;
-display:none;
 }
 @keyframes float{
 0%{transform:translateY(0px) translateX(0px);}
@@ -316,22 +246,15 @@ display:none;
 <body>
 
 <div id="strawberryBg"></div>
-
 <div class="shooting-star"></div>
 <div class="shooting-star"></div>
 <div class="shooting-star"></div>
 
 <div class="countdownBox" id="countdownBox">
-
-<img src="sticker1.png" class="sticker s1">
-<img src="sticker2.png" class="sticker s2">
-<img src="sticker3.png" class="sticker s3">
-<img src="sticker4.png" class="sticker s4">
-
 <div class="title">Counting down to your day ✨</div>
 <div id="countdown">Loading...</div>
-
 </div>
+
 <div id="tapScreen">Tap to open your surprise ✨</div>
 
 <div id="sky">
@@ -340,19 +263,11 @@ display:none;
 </div>
 
 <div id="main">
-<div class="card">
-
-<div class="photoStack">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-</div>
 
 <div class="message">
 Happy Birthday, My Tortoise.<br><br>
-Today isn't just the day you were born.... it's the day the world was blessed with the most beautiful soul I've ever known. You don't even realize how much light you bring into my life. The way you smile, the way you care, the way you love it all changed me in the best way possible.<br><br>
-Before you, love was just a word. With you, it became a feeling, a home, a heartbeat. You've seen me at my best and my worst, and still chose to stay. That's something I will never take for granted.<br><br>
-On your birthday, I don't just wish you happiness... I promise to be someone who protects your peace, supports your dreams, and loves you in ways that make you feel safe every single day.<br><br>
+Today isn't just the day you were born... it's the day the world was blessed with the most beautiful soul I've ever known.<br><br>
+You've seen me at my best and my worst, and still chose to stay.<br><br>
 No matter where life takes us, I'm always going to be grateful that I get to love you.<br><br>
 Happy Birthday to the girl who feels like my forever - my nanu ♡
 </div>
@@ -373,7 +288,6 @@ Happy Birthday to the girl who feels like my forever - my nanu ♡
 <div class="flame" onclick="blowOne(this)"></div>
 </div>
 
-<!-- realistic gift -->
 <div class="giftBox">
 <div class="giftLid"></div>
 <div class="giftRibbonV"></div>
@@ -381,36 +295,29 @@ Happy Birthday to the girl who feels like my forever - my nanu ♡
 </div>
 
 </div>
+
+</div>
+
 <audio id="music" src="music.mp3"></audio>
 
 <script>
 
-/* ===== COUNTDOWN ===== */
+/* countdown */
 let previewMode = window.location.search.includes("preview=rohan");
 
 let target = previewMode
 ? new Date().getTime()-2000
 : new Date("Feb 22, 2026 00:00:00 GMT+0530").getTime();
 
-let timer=setInterval(()=>{
-let now=new Date().getTime();
-let dist=target-now;
+let timer = setInterval(()=>{
+let now = new Date().getTime();
+let dist = target - now;
 
 if(dist<=0){
 clearInterval(timer);
-
 document.getElementById("countdownBox").style.display="none";
 document.getElementById("main").style.display="block";
 document.getElementById("tapScreen").classList.add("show");
-
-/* switch backgrounds */
-document.getElementById("strawberryBg").style.display="none";
-document.getElementById("sky").style.display="block";
-
-/* show effects */
-document.querySelectorAll(".shooting-star").forEach(s=>s.style.display="block");
-document.querySelectorAll(".firefly").forEach(f=>f.style.display="block");
-
 return;
 }
 
@@ -419,82 +326,45 @@ let h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
 let m=Math.floor((dist%(1000*60*60))/(1000*60));
 let s=Math.floor((dist%(1000*60))/1000);
 
-document.getElementById("countdown").innerHTML=
+document.getElementById("countdown").innerHTML =
 d+"d "+h+"h "+m+"m "+s+"s";
 
 },1000);
 
-/* tap start */
 document.getElementById("tapScreen").onclick=function(){
 this.style.display="none";
 document.getElementById("music").play();
 };
 
+function blowOne(el){
+if(el.classList.contains("blown")) return;
+el.classList.add("blown");
+el.style.opacity="0";
+el.style.transform="scale(0)";
+}
+
 /* stars */
 const canvas=document.getElementById("starsCanvas");
 const ctx=canvas.getContext("2d");
-function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight;}
-resizeCanvas();window.addEventListener("resize",resizeCanvas);
+canvas.width=innerWidth;
+canvas.height=innerHeight;
 
 let stars=[];
 for(let i=0;i<150;i++){
-stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2,d:Math.random()*0.5});
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2});
 }
 function drawStars(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.fillStyle="white";
 for(let s of stars){
-ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
-s.y+=s.d;if(s.y>canvas.height){s.y=0;s.x=Math.random()*canvas.width;}
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
 }
 requestAnimationFrame(drawStars);
 }
 drawStars();
 
-/* fireflies */
-for(let i=0;i<25;i++){
-let f=document.createElement("div");
-f.className="firefly";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*100+"vh";
-f.style.animationDuration=(6+Math.random()*6)+"s";
-document.body.appendChild(f);
-}
-
-/* candle */
-function blowOne(el){
-if(el.classList.contains("blown")) return;
-el.classList.add("blown");
-el.style.transition="0.6s";
-el.style.opacity="0";
-el.style.transform="scale(0)";
-navigator.vibrate?.(80);
-}
-
-/* moon glow */
-let moon=document.querySelector(".moon");
-window.addEventListener("scroll",()=>{
-let sc=window.scrollY;
-let glow=Math.min(sc/2,120);
-moon.style.boxShadow=`0 0 ${25+glow}px rgba(255,255,255,0.9),
-0 0 ${60+glow}px rgba(255,255,255,0.5),
-0 0 ${120+glow}px rgba(255,255,255,0.25)`;
-});
-
-/* parallax */
-document.addEventListener("mousemove",(e)=>{
-let x=(window.innerWidth/2-e.clientX)/40;
-let y=(window.innerHeight/2-e.clientY)/40;
-document.querySelector("#main").style.transform=`translate(${x}px,${y}px)`;
-});
-document.addEventListener("touchmove",(e)=>{
-let t=e.touches[0];
-let x=(window.innerWidth/2-t.clientX)/40;
-let y=(window.innerHeight/2-t.clientY)/40;
-document.querySelector("#main").style.transform=`translate(${x}px,${y}px)`;
-});
-
 </script>
 </body>
 </html>
-```0
